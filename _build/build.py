@@ -154,18 +154,19 @@ def plan_cards(compact=False):
 <div class="card plan tilt reveal"><span class="tag">5 pages</span><h3>Core Website</h3>
 <div class="price">$1,500 <small>one-time build</small></div>
 <p class="muted">Everything a service business needs to look professional and get calls.</p>
-<ul class="checks"><li>Home, Services, About, Gallery or Reviews, Contact and Quote</li><li>Contact and quote forms</li><li>Mobile-friendly, click-to-call</li><li>Google setup and Google Map</li><li>Live in about 2 weeks</li><li>Care plan included (hosting, updates, fixes)</li></ul>
+<ul class="checks"><li>Home, Services, About, Gallery or Reviews, Contact and Quote</li><li>Contact and quote forms</li><li>Mobile-friendly, click-to-call</li><li>Google setup and Google Map</li><li>Live in about 2 weeks</li><li>Care plan included (hosting, updates, fixes), first 30 days free</li></ul>
 <a class="btn btn-ghost" href="start.html?plan=core">Start with Core</a></div>
 <div class="card plan popular tilt reveal"><span class="ribbon">Most popular</span><span class="tag">8 pages</span><h3>Complete Website</h3>
 <div class="price">$1,997 <small>one-time build</small></div>
 <p class="muted">Room to give your top services their own pages and show up in more searches.</p>
-<ul class="checks"><li>Everything in Core Website</li><li>Separate pages for your top services</li><li>Service Areas, FAQ or Specials pages</li><li>Google Business Profile setup</li><li>A page for each town you serve</li><li>Care plan included (hosting, updates, fixes)</li></ul>
+<ul class="checks"><li>Everything in Core Website</li><li>Separate pages for your top services</li><li>Service Areas, FAQ or Specials pages</li><li>Google Business Profile setup</li><li>A page for each town you serve</li><li>Care plan included (hosting, updates, fixes), first 30 days free</li></ul>
 <a class="btn btn-primary" href="start.html?plan=complete">Start with Complete</a></div>
 </div>'''
 
 CARE = '''<div class="card care reveal">
 <div><span class="eyebrow">Care plan · included with every build</span><h2 style="font-size:clamp(1.8rem,3.6vw,2.6rem)">Your website, built and looked after.</h2>
 <p class="muted">You run your business. I keep your site online, up to date and working. Just text or email me what you need changed.</p>
+<p><b>Your first 30 days after launch are free.</b> Billing starts once your site has been live for 30 days.</p>
 <ul class="pill-list"><li>Hosting</li><li>Text changes</li><li>Adding promotions</li><li>Updating hours</li><li>Swapping photos</li><li>Fixing anything that breaks</li></ul></div>
 <div><div data-promo><span class="strike">$147/mo</span><span class="care-price">$99/mo</span>
 <p style="margin-top:10px">Locked in for life when your build invoice is paid by <b>Dec 31, 2026</b>.</p>
@@ -182,7 +183,7 @@ FAQ_TOP = [
 FAQ_MORE = [
  ("What if I don't have a logo or photos?","No problem. I can use clean text-based branding to start, and fill gaps with good-quality stock photos that fit your trade. A simple logo can be added for an extra fee."),
  ("Can I change things later?","Yes. That's what the care plan is for. Text me a new price, new hours or a new promo and it gets done, usually within a few business days."),
- ("What are the payment terms?","The build is paid in full up front, before work starts. The care plan is billed monthly starting the month your site launches. Prices are in Canadian dollars."),
+ ("What are the payment terms?","The build is paid in full up front, before work starts. The care plan is billed monthly, and your first 30 days after launch are free, so the first charge comes 30 days after your site goes live. Prices are in Canadian dollars."),
  ("Why is the care plan included?","Because a website isn't a one-time thing. It needs hosting, updates and the odd fix. Including it means you never have to worry about any of that, and you always have someone to call."),
  ("Can I upgrade from 5 to 8 pages?","Yes. You can start with Core Website and move up to Complete Website later. You just pay the difference for the extra pages."),
  ("What counts as a page?","A page is one item in your site's menu, like Home, Services or Contact. Thank-you pages, the privacy policy and forms don't count."),
@@ -284,7 +285,8 @@ pricing = head("Pricing", "Fixed prices. Written down.", "Two website builds, on
 <div class="card reveal"><span class="eyebrow">Price calculator</span><h3>What will it cost me?</h3>
 <div class="calc" id="calc"><div class="seg" role="group" aria-label="Number of pages"><button type="button" data-plan="core" aria-pressed="false">5 pages</button><button type="button" data-plan="complete" aria-pressed="true">8 pages</button></div>
 <div class="calc-out" id="calc-out" aria-live="polite">$1,997 today, then $99/mo for life</div>
-<a class="btn btn-primary" id="calc-go" href="start.html?plan=complete">Start with this plan</a></div></div>
+<a class="btn btn-primary" id="calc-go" href="start.html?plan=complete">Start with this plan</a></div>
+<p class="muted" style="margin:14px 0 0">Care plan billing starts 30 days after your site goes live.</p></div>
 </div></section>
 <section class="section light"><div class="wrap">
 <div class="section-head reveal"><span class="eyebrow">Side by side</span><h2>Compare the plans</h2></div>
@@ -294,7 +296,7 @@ pricing = head("Pricing", "Fixed prices. Written down.", "Two website builds, on
 <tr><td><b>Build price</b></td><td>$1,500, paid up front</td><td>$1,997, paid up front</td></tr>
 <tr><td><b>Pages</b></td><td>5</td><td>8</td></tr>
 <tr><td><b>Typical pages</b></td><td>Home, Services, About, Gallery or Reviews, Contact and Quote</td><td>Everything in Core Website, plus separate pages for top services, Service Areas, FAQ or Specials</td></tr>
-<tr><td><b>Care plan</b> (hosting, updates, fixes)</td><td>Included: <span data-promo>$99/mo for life (2026 special), then </span>$147/mo</td><td>Same</td></tr>
+<tr><td><b>Care plan</b> (hosting, updates, fixes)</td><td>Included, first 30 days free: <span data-promo>$99/mo for life (2026 special), then </span>$147/mo</td><td>Same</td></tr>
 <tr><td><b>Launch</b></td><td>About 2 weeks from project form</td><td>About 2 weeks from project form</td></tr>
 <tr><td><b>Contact and quote forms, mobile-friendly, click-to-call</b></td><td>Yes</td><td>Yes</td></tr>
 <tr><td><b>Extras</b></td><td>–</td><td>Google Business Profile setup, and a page for each town served</td></tr>
@@ -394,7 +396,7 @@ hiw_steps = [
  ("I build your site","About 1 week","I design and build your pages, write or polish the text, and set up your forms, maps and Google info."),
  ("You review a preview","A few days","You get a private preview link. Look it over on your phone, send your changes, and I'll make them."),
  ("Launch day","Around the 2-week mark","Once you approve, your site goes live on your domain with a secure connection. Your phone starts ringing."),
- ("After launch: the care plan","Ongoing","Hosting, text changes, new promos, updated hours, new photos and fixes. Just text or email me."),
+ ("After launch: the care plan","Ongoing","First 30 days free, then billed monthly. Hosting, text changes, new promos, updated hours, new photos and fixes. Just text or email me."),
 ]
 hiw = head("How it works", "Form to launch in about 2 weeks.", "A clear process with no surprises. Here's exactly what happens, how long it takes, and what you'll need.") + f'''
 <section class="section"><div class="wrap"><div class="grid" style="max-width:860px">
@@ -507,8 +509,9 @@ steps.append(("Plan and timing", f'''
 <div class="field"><label for="f-plan">Which plan?</label><select id="f-plan" name="plan"><option value="Complete Website (8 pages, $1,997)">Complete Website: 8 pages, $1,997</option><option value="Core Website (5 pages, $1,500)">Core Website: 5 pages, $1,500</option><option value="Not sure yet">Not sure yet</option></select></div>
 <div class="card" style="background:var(--charcoal)"><h3>Care plan included</h3><p class="muted">Hosting, updates and fixes come with every build.</p>
 <p data-promo><b style="color:var(--orange)">$99/mo locked in for life</b> when your build invoice is paid by Dec 31, 2026 (normally $147/mo).</p>
-<p data-nopromo><b>$147/mo</b>, starting the month your site launches.</p>
-<label class="choice"><input type="checkbox" name="Care plan acknowledged" value="Yes" required><span>I understand the care plan is included and billed monthly after launch</span></label></div>
+<p data-nopromo><b>$147/mo</b>, starting 30 days after your site goes live.</p>
+<p data-promo class="muted">Your first 30 days after launch are free.</p>
+<label class="choice"><input type="checkbox" name="Care plan acknowledged" value="Yes" required><span>I understand the care plan is included and billed monthly, starting 30 days after my site goes live</span></label></div>
 {fld("Ideal launch date","Ideal launch date","date")}
 {fld("Why that date?","Launch date reason",ph="Before spring busy season, grand opening…")}'''))
 steps.append(("Location, service area and hours", f'''
@@ -619,7 +622,7 @@ page("privacy.html", "Privacy Policy | Foundry Systems", "How Foundry Systems co
 terms = head("Terms", "Terms, in plain English.", "A summary of how working together works. Every client signs a full agreement before the build invoice is paid.") + f'''
 <section class="section"><div class="wrap prose">
 <p class="muted">Last updated October 31, 2026</p>
-<h2>Prices and payment</h2><ul><li>Core Website (5 pages) is $1,500. Complete Website (8 pages) is $1,997. Prices are in Canadian dollars.</li><li>The build is paid in full, up front, before work begins.</li><li>The care plan is included with every build and billed monthly by automatic payment, starting the month your site launches. The regular rate is $147/month.</li><li><b>2026 promotion:</b> if your build invoice is paid on or before December 31, 2026, your care plan is $99/month, locked in for as long as you keep it active. If you cancel and later return, the regular rate applies.</li><li>Extra work outside the build or care plan is quoted before it starts, with a $200 minimum.</li></ul>
+<h2>Prices and payment</h2><ul><li>Core Website (5 pages) is $1,500. Complete Website (8 pages) is $1,997. Prices are in Canadian dollars.</li><li>The build is paid in full, up front, before work begins.</li><li>The care plan is included with every build and billed monthly by automatic payment. The first 30 days after launch are free; billing starts 30 days after your site goes live. The regular rate is $147/month.</li><li><b>2026 promotion:</b> if your build invoice is paid on or before December 31, 2026, your care plan is $99/month, locked in for as long as you keep it active. If you cancel and later return, the regular rate applies.</li><li>Extra work outside the build or care plan is quoted before it starts, with a $200 minimum.</li></ul>
 <h2>Timeline</h2><p>Most sites launch about 2 weeks after payment and your completed project form. If I'm waiting on information from you, the timeline pauses.</p>
 <h2>What a "page" is</h2><p>One distinct page in the site's menu, like Home, Services or Contact. Forms, the privacy policy and thank-you pages don't count toward your total.</p>
 <h2>The care plan</h2><p>Covers hosting, a secure connection, text changes, promotions, hours and contact updates, photo swaps, and fixing anything that breaks. New pages, redesigns, new features and large batches of content are quoted separately.</p>
