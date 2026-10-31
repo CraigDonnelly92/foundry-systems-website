@@ -9,8 +9,6 @@ os.makedirs(OUT, exist_ok=True)
 SITE = "https://foundrysystems.ca"
 PHONE = "780-834-8078"; TEL = "+17808348078"; EMAIL = "craig.foundrysystems@gmail.com"
 FORM_ACTION = "https://formsubmit.co/" + EMAIL
-DEFAULT_STYLE = "original"
-STYLE_SCRIPT = """<script>(function(){var F={blueprint:"family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600",print:"family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600",signage:"family=Anton&family=Barlow+Condensed:wght@600;700",forge:"family=Anton&family=Barlow+Condensed:wght@600;700"};var d=document.documentElement,s="%s";try{var q=new URLSearchParams(location.search);if(q.get("style"))localStorage.setItem("fs-style",q.get("style"));if(q.has("styles"))localStorage.setItem("fs-style-picker",q.get("styles")==="off"?"0":"1");s=localStorage.getItem("fs-style")||s;}catch(e){}if(!/^(original|blueprint|print|signage|forge)$/.test(s))s="%s";d.setAttribute("data-style",s);window.FS_FONTS=F;window.FS_loadFont=function(k){if(!F[k]||document.getElementById("ff-"+k))return;var l=document.createElement("link");l.id="ff-"+k;l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?"+F[k]+"&display=swap";document.head.appendChild(l);};window.FS_loadFont(s);})();</script>""" % (DEFAULT_STYLE, DEFAULT_STYLE)
 ROBOT = open(os.path.join(SRC, "robot.svg"), encoding="utf-8").read()
 e = html.escape
 
@@ -58,7 +56,7 @@ def page(fname, title, desc, body, active=None, cta=True, bot_hello=None, extra_
     hello = ' data-bot-hello="%s"' % e(bot_hello) if bot_hello else ""
     canon = SITE + "/" + ("" if fname == "index.html" else fname)
     doc = f'''<!doctype html>
-<html lang="en-CA">
+<html lang="en-CA" data-style="forge">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -73,10 +71,9 @@ def page(fname, title, desc, body, active=None, cta=True, bot_hello=None, extra_
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="themes.css">
-{STYLE_SCRIPT}
 <script type="application/ld+json">{schema()}</script>
 {extra_head}
 </head>
