@@ -198,11 +198,20 @@ FAQ_MORE = [
 def faq_html(items):
     return "".join(f'<details class="reveal"><summary>{e(q)}</summary><div><p>{e(a)}</p></div></details>' for q, a in items)
 
-def mock(href, title, sub, color, tag, real=False, ext=False):
+def mock(href, title, sub, color, tag, real=False, ext=False, img=None, tall=False):
     tgt = ' target="_blank" rel="noopener"' if ext else ""
-    return f'''<a class="mock reveal" href="{href}"{tgt}><div class="mock-screen"><div class="mock-top" style="background:linear-gradient(135deg,{color},#111)">{e(title)}</div>
-<div class="mock-body"><i style="width:80%"></i><i style="width:60%"></i><i style="width:70%"></i></div></div>
-<div class="mock-meta"><span class="tag{' real' if real else ''}">{tag}</span><h3>{e(title)}</h3><p class="muted" style="margin:0">{e(sub)}</p></div></a>'''
+    if img:
+        host = href.replace("https://","").rstrip("/")
+        screen = (f'<div class="mock-screen shot-screen"><div class="pv-chrome"><i></i><i></i><i></i><span class="url">{e(host)}</span></div>'
+                  f'<div class="shot{" shot-tall" if tall else ""}"><img src="{img}" alt="Screenshot of the {e(title)} website" loading="lazy" width="1100" height="2012"></div></div>')
+    else:
+        screen = (f'<div class="mock-screen"><div class="mock-top" style="background:linear-gradient(135deg,{color},#111)">{e(title)}</div>'
+                  '<div class="mock-body"><i style="width:80%"></i><i style="width:60%"></i><i style="width:70%"></i></div></div>')
+    meta = "" if tall else f'<div class="mock-meta"><span class="tag{" real" if real else ""}">{tag}</span><h3>{e(title)}</h3><p class="muted" style="margin:0">{e(sub)}</p></div>'
+    return f'<a class="mock reveal" href="{href}"{tgt}>{screen}{meta}</a>'
+
+EW = "assets/work/elite-windshields.jpg"
+WB = "assets/work/worsley-baptist.jpg"
 
 home = f'''
 <section class="hero blueprint"><div class="sparks" aria-hidden="true"></div><div class="hero-glow" aria-hidden="true"></div>
@@ -236,8 +245,8 @@ home = f'''
 <div class="section-head reveal"><span class="eyebrow">Real work and samples</span><h2>Built, not just talked about.</h2>
 <p class="lede">Real client sites, plus working sample sites for each trade. Click any of them to look around.</p></div>
 <div class="grid g3">
-{mock("https://elitewindshields.ca","Elite Windshields","A glass shop site built to bring in windshield quotes.","#0f3b57","Client site",True,True)}
-{mock("https://worsleybaptistchurch.ca","Worsley Baptist Church","A clean, welcoming site for a rural church.","#3a2a1a","Client site",True,True)}
+{mock("https://elitewindshields.ca","Elite Windshields","Windshields, rock chips, tinting and fleet glass, with a quote button on every page.","#0f3b57","Client site",True,True,img=EW)}
+{mock("https://worsleybaptistchurch.ca","Worsley Baptist Church","Service times, ministries, events and the latest sermon for a rural church.","#3a2a1a","Client site",True,True,img=WB)}
 {mock("sample.html?t=plumbing","Summit Plumbing & Drain","Emergency call banner and service area map.","#0c2d48","Sample concept")}
 </div>
 <p style="margin-top:28px"><a class="btn btn-primary" href="work.html">See all sample work</a></p>
@@ -323,18 +332,21 @@ work = head("Sample work", "Real sites. Working samples.", "Real client work com
 <div class="split reveal">
 <div><span class="tag real">Client site · Glass</span><h2>Elite Windshields</h2>
 <p class="lede">A glass shop, just like the businesses I build for.</p>
-<p><b>What they needed:</b> a professional site that makes it quick for drivers to request a windshield quote and call the shop.</p>
-<p><b>What was built:</b> a fast, mobile-first site with clear service pages, click-to-call and a quote form that gets the details up front.</p>
+<p><b>What they needed:</b> a professional site that makes it quick for drivers to get a quote or call the shop, and that shows off more than just windshields.</p>
+<p><b>What was built:</b> a dark, sharp site with "Get a Quote" and the shop's phone number pinned in the header, pages for every service (windshield replacement, rock chip repair, window tinting, commercial and fleet glass, Lexan and Margard sheet, and equipment cutouts), a photo gallery of real jobs, and trust points up front: 2-year installation warranty, mobile service, insurance claims and fast turnaround.</p>
+<ul class="pill-list"><li>Quote requests</li><li>Click-to-call</li><li>8 pages</li><li>Gallery</li></ul>
 <p class="muted"><i>Owner's quote coming soon.</i></p>
 <a class="btn btn-primary" href="https://elitewindshields.ca" target="_blank" rel="noopener">Visit EliteWindshields.ca</a></div>
-<div>{mock("https://elitewindshields.ca","Elite Windshields","Live client site","#0f3b57","Client site",True,True)}</div>
+<div>{mock("https://elitewindshields.ca","Elite Windshields","","#0f3b57","Client site",True,True,img=EW,tall=True)}<p class="muted shot-hint">Hover to scroll the real homepage. Click to visit.</p></div>
 </div></div></section>
 <div class="rivets"></div>
 <section class="section"><div class="wrap split reveal">
-<div>{mock("https://worsleybaptistchurch.ca","Worsley Baptist Church","Live client site","#3a2a1a","Client site",True,True)}</div>
+<div>{mock("https://worsleybaptistchurch.ca","Worsley Baptist Church","","#3a2a1a","Client site",True,True,img=WB,tall=True)}<p class="muted shot-hint">Hover to scroll the real homepage. Click to visit.</p></div>
 <div><span class="tag real">Client site · Community</span><h2>Worsley Baptist Church</h2>
 <p class="lede">Proof the same care works beyond the trades.</p>
-<p>A warm, simple site with service times, events and a clear "New here?" path for visitors.</p>
+<p><b>What they needed:</b> one place where newcomers and members can find service times, what to expect, and what's coming up.</p>
+<p><b>What was built:</b> a calm, welcoming site with Sunday and Wednesday times right on the homepage, a "New Here" page for first-time visitors, pages for ministries, events and hall rental, a member login, and the latest sermon pulled straight from the church's YouTube channel.</p>
+<ul class="pill-list"><li>New Here page</li><li>Sermons from YouTube</li><li>Events</li><li>Hall rental</li><li>Member login</li></ul>
 <a class="btn btn-primary" href="https://worsleybaptistchurch.ca" target="_blank" rel="noopener">Visit WorsleyBaptistChurch.ca</a></div>
 </div></section>
 <section class="section light"><div class="wrap">

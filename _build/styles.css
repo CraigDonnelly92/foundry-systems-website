@@ -346,3 +346,17 @@ input[type=file]{width:100%;padding:18px;border:2px dashed #4a4a52;border-radius
 .menu a,.nav-cta .btn{white-space:nowrap}
 .menu a{padding:10px 10px}
 @media (max-width:1240px) and (min-width:1021px){.nav-cta .btn-ghost{display:none}.brand{font-size:1.3rem}}
+
+/* Real client screenshots: scroll the page on hover */
+.shot-screen{background:#0b0e16}
+.shot-screen .pv-chrome{background:#26262B}
+.shot-screen .pv-chrome i{background:#45454d}
+.shot-screen .pv-chrome .url{background:#18181B;color:#9A9AA3}
+.shot{aspect-ratio:16/10;overflow:hidden;position:relative;background:#0b0e16}
+.shot img{width:100%;height:auto;display:block;transform:translateY(0);transition:transform 6s cubic-bezier(.45,0,.55,1)}
+.mock:hover .shot img,.mock:focus-visible .shot img{transform:translateY(-65.8%)}
+.shot-tall{aspect-ratio:4/3}
+.mock:hover .shot-tall img,.mock:focus-visible .shot-tall img{transform:translateY(-59%)}
+.shot-hint{font-size:.88rem;margin:12px 0 0}
+@media (hover:none){.shot-hint{display:none}}
+@media (prefers-reduced-motion:reduce){.mock:hover .shot img{transform:none}}
