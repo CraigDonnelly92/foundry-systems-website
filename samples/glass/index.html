@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clearview Glass &amp; Windshield | Sample site by Foundry Systems</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ice:#F5F8FA;--slate:#0E2233;--blue:#2A8BD8;--blue-d:#1C6FB3;--frost:#DCE7EE;--amber:#F2A93B;--ink2:#47596A;--r:14px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.65 Manrope,system-ui,sans-serif;color:var(--slate);background:var(--ice)}
+img{max-width:100%;display:block}
+a{color:var(--blue-d)}
+h1,h2,h3{line-height:1.08;letter-spacing:-.025em;margin:0 0 .5em;font-weight:800}
+h1{font-size:clamp(2.4rem,5.6vw,4.4rem)}h2{font-size:clamp(1.8rem,3.6vw,2.7rem)}h3{font-size:1.2rem;letter-spacing:-.01em}
+p{margin:0 0 1em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 22px;border-radius:999px;font:700 1rem Manrope,sans-serif;text-decoration:none;border:0;cursor:pointer}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--blue-d)}
+.btn-line{border:2px solid currentColor;color:var(--slate);background:transparent}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(245,248,250,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--frost)}
+.nav{display:flex;align-items:center;gap:26px;height:70px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--slate);letter-spacing:-.02em}
+.logo svg{width:34px;height:34px}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul a{text-decoration:none;color:var(--ink2);font-weight:600}.nav ul a:hover{color:var(--slate)}
+.nav .call{font-weight:800;text-decoration:none;color:var(--slate);white-space:nowrap}
+.menu-btn{display:none;margin-left:auto;background:#fff;border:1px solid var(--frost);border-radius:10px;width:46px;height:46px;font-size:1.3rem}
+@media (max-width:900px){.nav ul{display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;gap:0;background:#fff;padding:8px 22px 16px;border-bottom:1px solid var(--frost)}.nav ul.open{display:flex}.nav ul a{display:block;padding:12px 0}.menu-btn{display:block}.nav .call{display:none}}
+/* hero */
+.hero{position:relative;min-height:640px;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,34,51,.05) 30%,rgba(14,34,51,.78))}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end;padding-bottom:56px;width:100%}
+.hero p.lead{font-size:1.18rem;max-width:34ch;color:#E4EEF5}
+.quote{background:#fff;color:var(--slate);border-radius:20px;padding:26px;box-shadow:0 30px 60px -30px rgba(0,0,0,.55)}
+.quote h2{font-size:1.45rem;margin-bottom:4px}
+.quote .sub{color:var(--ink2);font-size:.95rem;margin-bottom:16px}
+.f3{display:grid;grid-template-columns:.8fr 1fr 1fr;gap:8px}
+label.l{display:block;font-size:.82rem;font-weight:700;margin:12px 0 6px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;border:1.5px solid var(--frost);border-radius:10px;padding:11px 12px;background:var(--ice);color:var(--slate)}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);outline:none;background:#fff}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0}
+.seg span{display:inline-block;padding:9px 14px;border-radius:999px;border:1.5px solid var(--frost);font-weight:700;font-size:.9rem;cursor:pointer}
+.seg input:checked+span{background:var(--slate);color:#fff;border-color:var(--slate)}
+.seg input:focus-visible+span{outline:3px solid var(--amber)}
+.quote .btn{width:100%;margin-top:16px}
+@media (max-width:900px){.hero{min-height:0}.hero .wrap{grid-template-columns:1fr;padding-top:220px}.f3{grid-template-columns:1fr 1fr}.f3>:first-child{grid-column:1/-1}}
+/* trust strip */
+.trust{background:var(--slate);color:#C9D6E1}
+.trust .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:18px;padding-bottom:18px;font-weight:600;font-size:.95rem}
+.trust b{color:#fff}
+/* sections */
+section{padding:90px 0}
+.intro{max-width:620px;margin-bottom:40px}
+.intro p{color:var(--ink2);font-size:1.08rem}
+/* chip checker */
+.checker{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.gauge{background:#fff;border:1px solid var(--frost);border-radius:24px;padding:30px}
+.gauge input[type=range]{padding:0;border:0;background:none;accent-color:var(--blue);height:30px}
+.size-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--ink2);font-weight:600}
+.stage{position:relative;height:200px;border-radius:16px;margin:18px 0;background:linear-gradient(160deg,#cfe3f1,#eef5fa 55%,#d7e6f0);overflow:hidden}
+.stage .coin{position:absolute;left:24px;bottom:22px;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e9d8a6,#b9975b);box-shadow:inset 0 0 0 6px #d4d4d4;display:grid;place-items:center;font-size:.6rem;font-weight:800;color:#5b4a26}
+.stage .chip{position:absolute;left:58%;top:50%;transform:translate(-50%,-50%)}
+.verdict{border-radius:14px;padding:16px 18px;font-weight:600}
+.verdict.ok{background:#E3F2E8;color:#1E5B33}.verdict.no{background:#FDF0DA;color:#7A4B07}
+.verdict b{display:block;font-size:1.15rem;margin-bottom:2px}
+/* services tabs */
+.svc{background:#fff}
+.tabs{display:inline-flex;background:var(--ice);border-radius:999px;padding:5px;margin-bottom:34px;border:1px solid var(--frost)}
+.tabs button{border:0;background:none;font:700 1rem Manrope,sans-serif;padding:11px 20px;border-radius:999px;cursor:pointer;color:var(--ink2)}
+.tabs button[aria-selected=true]{background:var(--slate);color:#fff}
+.panel{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.panel[hidden]{display:none}
+.panel img{border-radius:20px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.panel ul{list-style:none;padding:0;margin:20px 0 26px}
+.panel li{padding:12px 0;border-bottom:1px solid var(--frost);display:flex;justify-content:space-between;gap:12px;font-weight:600}
+.panel li span{color:var(--ink2);font-weight:500}
+/* insurance */
+.ins{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:i}
+.ins div{background:#fff;border-radius:var(--r);padding:26px;border:1px solid var(--frost);counter-increment:i}
+.ins div::before{content:counter(i);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;margin-bottom:14px}
+.ins p{color:var(--ink2);margin:0}
+/* mobile service */
+.mobile{background:var(--slate);color:#fff;border-radius:28px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.mobile .txt{padding:48px}
+.mobile p{color:#C9D6E1}
+.mobile img{width:100%;height:100%;object-fit:cover}
+.towns{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 26px;padding:0;list-style:none}
+.towns li{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 12px;font-size:.9rem}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.reviews figure{margin:0;background:#fff;border-radius:var(--r);padding:24px;border:1px solid var(--frost)}
+.stars{color:var(--amber);letter-spacing:2px}
+.reviews blockquote{margin:10px 0 14px;font-weight:600}
+.reviews figcaption{color:var(--ink2);font-size:.9rem}
+footer{background:#08141F;color:#9FB2C2;padding:56px 0 40px;font-size:.95rem}
+footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px}
+footer b{color:#fff;display:block;margin-bottom:8px}
+footer a{color:#cfe3f1}
+@media (max-width:860px){.checker,.panel,.mobile{grid-template-columns:1fr}.ins,.reviews{grid-template-columns:1fr}.mobile .txt{padding:32px}footer .wrap{grid-template-columns:1fr}section{padding:64px 0}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 30 10 10h20l4 20z" fill="#2A8BD8"/><path d="M13 14l-2 10M19 14l6 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".85"/></svg>Clearview Glass</a>
+<button class="menu-btn" data-menu-toggle aria-controls="gm" aria-expanded="false" aria-label="Menu">☰</button>
+<ul id="gm"><li><a href="#check">Chip or crack?</a></li><li><a href="#services">Services</a></li><li><a href="#insurance">Insurance</a></li><li><a href="#mobile">Mobile service</a></li></ul>
+<a class="call" href="tel:+17805550142">780-555-0142</a>
+</div></header>
+
+<section class="hero" style="padding:0">
+<img src="https://images.unsplash.com/photo-1595977910374-793e731cb36e?w=1800&q=70&auto=format&fit=crop" alt="Looking out through a clean windshield at an open highway">
+<div class="wrap">
+<div><h1>See the road again.</h1>
+<p class="lead">Windshield replacement and rock chip repair in Grande Prairie. Most chips are fixed in 30 minutes, at our shop or in your driveway.</p>
+<a class="btn btn-line" style="color:#fff" href="tel:+17805550142">Call 780-555-0142</a></div>
+<form class="quote" aria-labelledby="qh">
+<h2 id="qh">Get a windshield quote</h2>
+<p class="sub">Tell us the vehicle and we'll text you a price, usually within the hour.</p>
+<div class="f3"><div><label class="l" for="y">Year</label><input id="y" inputmode="numeric" placeholder="2019"></div>
+<div><label class="l" for="mk">Make</label><input id="mk" placeholder="Ford"></div>
+<div><label class="l" for="md">Model</label><input id="md" placeholder="F-150"></div></div>
+<span class="l" style="display:block;font-size:.82rem;font-weight:700;margin:12px 0 6px">What happened?</span>
+<div class="seg" role="radiogroup" aria-label="Damage type"><label><input type="radio" name="dmg" checked><span>Rock chip</span></label><label><input type="radio" name="dmg"><span>Crack</span></label><label><input type="radio" name="dmg"><span>Shattered</span></label></div>
+<label class="l" for="ph">Mobile number</label><input id="ph" type="tel" placeholder="780-">
+<button class="btn btn-blue" type="submit">Text me a quote</button>
+</form>
+</div>
+</section>
+
+<div class="trust"><div class="wrap"><span><b>Lifetime</b> leak warranty on installs</span><span><b>Insurance</b> claims handled for you</span><span><b>Mobile</b> service across the Peace</span><span><b>4.9</b> stars from 380 Google reviews</span></div></div>
+
+<section id="check"><div class="wrap checker">
+<div><h2>Chip or crack? Find out in five seconds.</h2>
+<p style="color:var(--ink2);font-size:1.08rem">Slide to match the size of your damage. A chip smaller than a toonie can usually be repaired for a fraction of a new windshield, and most insurance plans cover repairs in full.</p>
+<a class="btn btn-blue" href="#qh">Get my quote</a></div>
+<div class="gauge">
+<label class="l" for="sz" style="margin-top:0">How big is the damage?</label>
+<input id="sz" type="range" min="5" max="60" value="18" aria-describedby="vd">
+<div class="size-row"><span>Pea</span><span>Toonie</span><span>Long crack</span></div>
+<div class="stage" aria-hidden="true"><div class="coin">$2</div><svg class="chip" id="chipsvg" viewBox="-60 -60 120 120" width="120" height="120"></svg></div>
+<div class="verdict ok" id="vd" aria-live="polite"><b>Repairable</b>A 30-minute resin repair stops it from spreading. Usually covered by insurance.</div>
+</div>
+</div></section>
+
+<section class="svc" id="services"><div class="wrap">
+<div class="intro"><h2>Glass for whatever you drive, live in, or run.</h2><p>Same crew, same warranty, three kinds of work.</p></div>
+<div class="tabs" role="tablist" aria-label="Service type">
+<button role="tab" aria-selected="true" aria-controls="p1" id="t1">Auto</button><button role="tab" aria-selected="false" aria-controls="p2" id="t2">Home</button><button role="tab" aria-selected="false" aria-controls="p3" id="t3">Commercial</button></div>
+<div class="panel" role="tabpanel" id="p1" aria-labelledby="t1"><img src="https://images.unsplash.com/photo-1611323200454-219e6c4b3471?w=1100&q=70&auto=format&fit=crop" alt="Clean windshield on a white car" loading="lazy">
+<div><h3 style="font-size:1.6rem">Windshields, chips and side glass</h3><p style="color:var(--ink2)">OEM-quality glass, urethane that cures fast enough to drive the same day, and camera recalibration for newer trucks with lane assist.</p>
+<ul><li>Rock chip repair <span>from $59</span></li><li>Windshield replacement <span>from $289</span></li><li>Side and back glass <span>quoted by vehicle</span></li><li>ADAS camera recalibration <span>from $149</span></li></ul><a class="btn btn-blue" href="#qh">Quote my vehicle</a></div></div>
+<div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden><img src="https://images.unsplash.com/photo-1630241216171-8dec45d86e19?w=1100&q=70&auto=format&fit=crop" alt="Glass and reflections" loading="lazy">
+<div><h3 style="font-size:1.6rem">Windows, mirrors and shower doors</h3><p style="color:var(--ink2)">Foggy double-pane units, cracked panes and custom mirrors, measured and installed by the same people who answer the phone.</p>
+<ul><li>Sealed unit replacement <span>from $180</span></li><li>Custom mirrors <span>cut to size</span></li><li>Frameless shower doors <span>free measure</span></li></ul><a class="btn btn-blue" href="tel:+17805550142">Book a free measure</a></div></div>
+<div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden><img src="https://images.unsplash.com/photo-1753030148206-4f6cd95e7512?w=1100&q=70&auto=format&fit=crop" alt="Front of a black SUV" loading="lazy">
+<div><h3 style="font-size:1.6rem">Storefronts and fleets</h3><p style="color:var(--ink2)">Board-up after a break-in, new storefront glass, and priority windshield service for work trucks so they're back on the lease road fast.</p>
+<ul><li>Emergency board-up <span>24/7</span></li><li>Fleet accounts <span>monthly billing</span></li><li>Heavy equipment glass <span>Lexan and safety glass</span></li></ul><a class="btn btn-blue" href="tel:+17805550142">Set up a fleet account</a></div></div>
+</div></section>
+
+<section id="insurance"><div class="wrap">
+<div class="intro"><h2>We deal with the insurance company.</h2><p>Most comprehensive policies cover glass. Here's what you actually have to do.</p></div>
+<div class="ins"><div><h3>Send us your policy number</h3><p>On the quote form or over the phone. That's the only paperwork you'll touch.</p></div>
+<div><h3>We file the claim</h3><p>We call your insurer, confirm coverage and your deductible, and book the job.</p></div>
+<div><h3>Drive away</h3><p>You pay the deductible, if there is one. Chip repairs usually have none.</p></div></div>
+</div></section>
+
+<section id="mobile" style="padding-top:0"><div class="wrap"><div class="mobile">
+<div class="txt"><h2>Can't come in? We'll come to you.</h2><p>Our mobile van covers the whole Peace Country. Rock chips are repaired on the spot. Full windshields need a dry, above-zero spot, like your garage or our heated bay.</p>
+<ul class="towns"><li>Grande Prairie</li><li>Clairmont</li><li>Sexsmith</li><li>Wembley</li><li>Beaverlodge</li><li>Hythe</li><li>Valleyview</li></ul>
+<a class="btn btn-blue" href="tel:+17805550142">Book the van</a></div>
+<img src="https://images.unsplash.com/photo-1613042964418-89c800809319?w=1100&q=70&auto=format&fit=crop" alt="Cracked windshield on a car" loading="lazy">
+</div></div></section>
+
+<section style="padding-top:0"><div class="wrap">
+<div class="intro"><h2>What drivers say</h2></div>
+<div class="reviews">
+<figure><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>"Came to my work, fixed the chip in the parking lot, done before lunch."</blockquote><figcaption>Sample review · Grande Prairie</figcaption></figure>
+<figure><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>"They handled the whole insurance claim. I literally just showed up."</blockquote><figcaption>Sample review · Sexsmith</figcaption></figure>
+<figure><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>"New windshield on the Ram and the lane camera works perfectly."</blockquote><figcaption>Sample review · Wembley</figcaption></figure>
+</div></div></section>
+
+<footer><div class="wrap">
+<div><b>Clearview Glass &amp; Windshield</b>10012 100 Ave, Grande Prairie, AB<br><a href="tel:+17805550142">780-555-0142</a></div>
+<div><b>Hours</b>Mon–Fri 8–5:30<br>Sat 9–2</div>
+<div><b>Mobile service</b>Peace Country, Tuesday to Saturday</div>
+</div></footer>
+
+<script src="/samples/sample.js"></script>
+<script>
+(function(){
+  // chip checker
+  var r=document.getElementById("sz"),svg=document.getElementById("chipsvg"),vd=document.getElementById("vd");
+  function draw(){var v=+r.value,s=v/26,lines="";
+    var n=v>34?9:6;for(var i=0;i<n;i++){var a=i/n*Math.PI*2+.3,len=(v>34?(18+v*1.1):(6+v*.5));lines+='<path d="M0 0 L'+(Math.cos(a)*len).toFixed(1)+' '+(Math.sin(a)*len*(.7+.3*(i%2))).toFixed(1)+'" stroke="#ffffff" stroke-width="1.6" opacity=".9"/>';}
+    svg.innerHTML='<circle r="'+(4+v*.18)+'" fill="rgba(255,255,255,.75)" stroke="#9fb7c9"/>'+lines;
+    if(v<=28){vd.className="verdict ok";vd.innerHTML="<b>Repairable</b>A 30-minute resin repair stops it from spreading. Usually covered by insurance.";}
+    else{vd.className="verdict no";vd.innerHTML="<b>Likely a new windshield</b>Damage this size usually spreads. We'll quote a replacement and handle the claim.";}}
+  r.addEventListener("input",draw);draw();
+  // tabs
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  tabs.forEach(function(t,i){t.addEventListener("click",function(){tabs.forEach(function(x){x.setAttribute("aria-selected",x===t);document.getElementById(x.getAttribute("aria-controls")).hidden=x!==t;});});
+    t.addEventListener("keydown",function(e){var k=e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0;if(k){var n=tabs[(i+k+tabs.length)%tabs.length];n.focus();n.click();}});});
+})();
+</script>
+</body>
+</html>

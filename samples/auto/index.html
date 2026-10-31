@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northline Auto Repair | Sample site by Foundry Systems</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--asphalt:#1C1D1F;--oil:#2A2B2E;--cream:#EDE6D6;--paper:#F7F3EA;--red:#C8302B;--red-d:#A3241F;--brass:#B88A44;--mute:#A5A29A}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 "Work Sans",system-ui,sans-serif;background:var(--asphalt);color:var(--cream)}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:"Saira Condensed",sans-serif;line-height:.95;margin:0 0 .45em;font-weight:800}
+h1{font-size:clamp(3rem,8vw,6.2rem)}h2{font-size:clamp(2.2rem,5vw,3.6rem)}h3{font-size:1.7rem;font-weight:700}
+p{margin:0 0 1em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;font:700 1.25rem "Saira Condensed",sans-serif;letter-spacing:.02em;text-decoration:none;border:0;border-radius:4px;cursor:pointer}
+.btn-red{background:var(--red);color:#fff}.btn-red:hover{background:var(--red-d)}
+.btn-ghost{border:2px solid var(--cream);color:var(--cream);background:transparent}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+header{border-bottom:1px solid #34353a}
+.nav{display:flex;align-items:center;height:76px;gap:28px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--cream)}
+.logo .badge{width:44px;height:44px;border:2px solid var(--red);border-radius:50%;display:grid;place-items:center;font:800 1.2rem "Saira Condensed";color:var(--red)}
+.logo b{font:800 1.6rem/1 "Saira Condensed"}.logo small{display:block;font-size:.72rem;color:var(--mute);letter-spacing:.06em}
+.nav ul{display:flex;gap:24px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul a{color:var(--cream);text-decoration:none;font-weight:600;opacity:.8}.nav ul a:hover{opacity:1}
+.nav .tel{font:800 1.4rem "Saira Condensed";color:#fff;text-decoration:none}
+.menu-btn{display:none;margin-left:auto;background:var(--oil);color:var(--cream);border:0;border-radius:6px;width:46px;height:46px;font-size:1.3rem}
+@media (max-width:900px){.nav ul{display:none;position:absolute;left:0;right:0;top:110px;background:var(--asphalt);flex-direction:column;gap:0;padding:6px 22px 16px;z-index:5;border-bottom:1px solid #34353a}.nav ul.open{display:flex}.nav ul a{display:block;padding:12px 0}.menu-btn{display:block}.nav .tel{display:none}}
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:620px}
+.hero .left{padding:70px 48px 60px max(22px,calc((100vw - 1200px)/2 + 22px));display:flex;flex-direction:column;justify-content:center}
+.hero .left p{font-size:1.15rem;color:#CFC8B7;max-width:40ch}
+.hero .photo{position:relative}
+.hero .photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.85)}
+.open-now{position:absolute;left:24px;bottom:24px;background:var(--paper);color:var(--asphalt);padding:14px 18px;border-radius:6px;font-weight:600;font-size:.95rem}
+.open-now b{display:block;font:800 1.3rem "Saira Condensed";color:#1F7A3A}
+.book{background:var(--oil);border-radius:8px;padding:22px;margin-top:22px;max-width:520px}
+.book h2{font-size:1.7rem;margin-bottom:12px}
+.days{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:12px}
+.days label{position:relative}
+.days input{position:absolute;opacity:0}
+.days span{display:block;text-align:center;padding:8px 0;border:1.5px solid #45464c;border-radius:6px;cursor:pointer;font-weight:600;font-size:.85rem;line-height:1.2}
+.days span b{display:block;font:800 1.35rem "Saira Condensed";color:#fff}
+.days input:checked+span{background:var(--red);border-color:var(--red);color:#fff}
+.days input:focus-visible+span{outline:3px solid var(--brass)}
+.book .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+input,textarea,select{width:100%;font:inherit;font-size:16px;background:var(--asphalt);border:1.5px solid #45464c;border-radius:6px;padding:12px;color:var(--cream)}
+input:focus,textarea:focus{border-color:var(--brass);outline:none}
+.book textarea{margin-top:8px;min-height:70px}
+.book .btn{width:100%;margin-top:10px}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.hero .left{padding:44px 22px}.hero .photo{height:320px;order:-1}.days{grid-template-columns:repeat(3,1fr)}}
+/* makes */
+.makes{border-top:1px solid #34353a;border-bottom:1px solid #34353a;padding:22px 0}
+.makes .wrap{display:flex;gap:30px;flex-wrap:wrap;justify-content:space-between;align-items:center;font:700 1.3rem "Saira Condensed";color:var(--mute)}
+.makes .wrap span:first-child{color:var(--cream);font:600 1rem "Work Sans"}
+/* price board */
+section{padding:90px 0}
+.board-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.board-wrap>div>p{color:#CFC8B7;font-size:1.08rem}
+.board{background:var(--paper);color:var(--asphalt);border-radius:6px;padding:34px 36px;box-shadow:0 0 0 10px #2b2c2f,0 30px 60px -20px #000}
+.board h3{color:var(--red);border-bottom:3px solid var(--asphalt);padding-bottom:8px;margin:0 0 6px;font-size:1.8rem}
+.board h3:not(:first-child){margin-top:26px}
+.board dl{margin:0}
+.board .item{display:flex;align-items:baseline;gap:10px;padding:8px 0}
+.board dt{font-weight:600}
+.board .item::after{content:"";order:2;flex:1;border-bottom:2px dotted #b9b2a0;transform:translateY(-4px)}
+.board dd{order:3;margin:0;font:800 1.35rem "Saira Condensed"}
+.board small{display:block;margin-top:18px;color:#6d6a63}
+/* why */
+.why{background:var(--paper);color:var(--asphalt)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:3px solid var(--asphalt)}
+.why-grid div{padding:28px 26px 10px 0}
+.why-grid div+div{padding-left:26px;border-left:1px solid #d6cfbe}
+.why-grid p{color:#4c4a45}
+.photos{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-top:50px}
+.photos img{width:100%;height:280px;object-fit:cover;border-radius:4px}
+/* fleet */
+.fleet{background:var(--red);color:#fff}
+.fleet .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.fleet p{color:#FBE3E1;font-size:1.08rem}
+.fleet ul{list-style:none;padding:0;margin:0}
+.fleet li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.3);font-weight:600}
+.fleet .btn{background:var(--asphalt);color:#fff;margin-top:8px}
+.rev{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.rev figure{margin:0;border-left:3px solid var(--brass);padding-left:20px}
+.rev blockquote{margin:0 0 10px;font-size:1.1rem}
+.rev figcaption{color:var(--mute);font-size:.9rem}
+footer{border-top:1px solid #34353a;padding:50px 0;color:var(--mute)}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer b{color:var(--cream);display:block;margin-bottom:6px;font:700 1.3rem "Saira Condensed"}
+footer a{color:var(--cream)}
+@media (max-width:860px){.board-wrap,.fleet .wrap{grid-template-columns:1fr}.why-grid,.rev{grid-template-columns:1fr}.why-grid div+div{border-left:0;padding-left:0;border-top:1px solid #d6cfbe}.photos{grid-template-columns:1fr 1fr}.photos img:first-child{grid-column:1/-1}.board{padding:24px 20px}footer .wrap{grid-template-columns:1fr}section{padding:64px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#"><span class="badge">N</span><span><b>Northline Auto</b><small>Peace River, since 1998</small></span></a>
+<button class="menu-btn" data-menu-toggle aria-controls="am" aria-expanded="false" aria-label="Menu">☰</button>
+<ul id="am"><li><a href="#prices">Prices</a></li><li><a href="#why">Why us</a></li><li><a href="#fleet">Fleet</a></li><li><a href="#book">Book</a></li></ul>
+<a class="tel" href="tel:+17805550188">780-555-0188</a>
+</div></header>
+
+<section class="hero" style="padding:0">
+<div class="left">
+<h1>Straight answers. Fair bills.</h1>
+<p>Family-run repair shop in Peace River. We call before we fix anything, and the price we quote is the price you pay.</p>
+<form class="book" id="book" aria-labelledby="bh">
+<h2 id="bh">Book a time</h2>
+<div class="days" role="radiogroup" aria-label="Pick a day" id="days"></div>
+<div class="row"><input aria-label="Your name" placeholder="Your name"><input type="tel" aria-label="Phone" placeholder="Phone"></div>
+<textarea aria-label="What's going on with the vehicle?" placeholder="What's it doing? Grinding brakes, check engine light, winter tires…"></textarea>
+<button class="btn btn-red" type="submit">Request this day</button>
+</form>
+</div>
+<div class="photo"><img src="https://images.unsplash.com/photo-1619505372149-07875c35b313?w=1400&q=70&auto=format&fit=crop" alt="Open service bay of an auto repair shop">
+<div class="open-now"><b>Open today</b>7:30 am to 6 pm · Loaner car available</div></div>
+</section>
+
+<div class="makes"><div class="wrap"><span>We fix all of them</span><span>Ford</span><span>GMC</span><span>Ram</span><span>Toyota</span><span>Honda</span><span>Hyundai</span><span>Diesel</span></div></div>
+
+<section id="prices"><div class="wrap board-wrap">
+<div><h2>The price board</h2><p>Most shops make you call for a price. Ours is on the wall, and now it's here too. Parts quoted before any work starts.</p>
+<a class="btn btn-red" href="#book">Book a time</a></div>
+<div class="board">
+<h3>Maintenance</h3><dl>
+<div class="item"><dt>Synthetic oil change and inspection</dt><dd>$119</dd></div>
+<div class="item"><dt>Winter tire changeover (on rims)</dt><dd>$69</dd></div>
+<div class="item"><dt>Mount and balance, four tires</dt><dd>$129</dd></div>
+<div class="item"><dt>Battery test and replacement</dt><dd>from $189</dd></div></dl>
+<h3>Repairs</h3><dl>
+<div class="item"><dt>Brake pads and rotors, per axle</dt><dd>from $389</dd></div>
+<div class="item"><dt>Check engine diagnostic</dt><dd>$129</dd></div>
+<div class="item"><dt>Block heater install</dt><dd>from $149</dd></div>
+<div class="item"><dt>Out-of-province inspection</dt><dd>$179</dd></div></dl>
+<small>Diagnostic fee comes off the bill if you have us do the repair.</small>
+</div>
+</div></section>
+
+<section class="why" id="why"><div class="wrap">
+<h2>Why people stick with us</h2>
+<div class="why-grid">
+<div><h3>We call first</h3><p>Nothing gets fixed without your OK. You'll get a text with photos of what we found.</p></div>
+<div><h3>Red Seal techs</h3><p>Three journeyman technicians with more than 60 years between them, on gas and diesel.</p></div>
+<div><h3>12-month warranty</h3><p>Parts and labour on every repair, in writing on your invoice.</p></div>
+</div>
+<div class="photos">
+<img src="https://images.unsplash.com/photo-1702146713858-8e7d1cc29fe8?w=1200&q=70&auto=format&fit=crop" alt="Technician working under a vehicle" loading="lazy">
+<img src="https://images.unsplash.com/photo-1698382318239-2b134ca8fa4c?w=700&q=70&auto=format&fit=crop" alt="Wrenches hanging on a rack" loading="lazy">
+<img src="https://images.unsplash.com/photo-1702146713922-613313be011d?w=700&q=70&auto=format&fit=crop" alt="Tire with a wrench beside it" loading="lazy">
+</div>
+</div></section>
+
+<section class="fleet" id="fleet"><div class="wrap">
+<div><h2>Running work trucks?</h2><p>Oilfield, farm and contractor fleets get priority bays, one monthly invoice, and a reminder before every service is due.</p>
+<a class="btn" href="tel:+17805550188">Set up a fleet account</a></div>
+<ul><li>Same-week service guaranteed</li><li>Monthly invoicing</li><li>CVIP-ready inspections</li><li>Pickup and drop-off in town</li></ul>
+</div></section>
+
+<section><div class="wrap">
+<h2>From the guest book</h2>
+<div class="rev">
+<figure><blockquote>"Told me my brakes had another 10,000 km in them. Other shop wanted $900."</blockquote><figcaption>Sample review · Peace River</figcaption></figure>
+<figure><blockquote>"Texted me photos of the leak before they touched anything. That's rare."</blockquote><figcaption>Sample review · Grimshaw</figcaption></figure>
+<figure><blockquote>"They keep our six trucks running through harvest. Never had to wait."</blockquote><figcaption>Sample review · Nampa</figcaption></figure>
+</div></div></section>
+
+<footer><div class="wrap">
+<div><b>Northline Auto Repair</b>9810 98 St, Peace River, AB<br><a href="tel:+17805550188">780-555-0188</a></div>
+<div><b>Hours</b>Mon–Fri 7:30–6<br>Sat 8–2</div>
+<div><b>Certified</b>Red Seal technicians<br>Licensed in Alberta</div>
+</div></footer>
+
+<script src="/samples/sample.js"></script>
+<script>
+(function(){
+  var box=document.getElementById("days"),d=new Date(),names=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],html="",n=0,first=true;
+  while(n<6){d.setDate(d.getDate()+1);if(d.getDay()===0)continue;
+    html+='<label><input type="radio" name="day"'+(first?" checked":"")+'><span>'+names[d.getDay()]+'<b>'+d.getDate()+'</b></span></label>';first=false;n++;}
+  box.innerHTML=html;
+})();
+</script>
+</body>
+</html>

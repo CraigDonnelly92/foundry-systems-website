@@ -128,58 +128,33 @@ if(picker){
     b.dataset.trade = k; b.innerHTML = ICONS[k] + "<span>" + TRADES[k].label + "</span>";
     picker.appendChild(b);
   });
+  var frame = null, box = null;
+  function fit(){ if(!frame || !box) return; var s = box.clientWidth / 1440; frame.style.transform = "scale(" + s + ")"; box.style.height = Math.round(900 * s) + "px"; }
   function render(k){
-    var t = TRADES[k];
-    preview.style.setProperty("--pv-main", t.main); preview.style.setProperty("--pv-accent", t.accent);
-    preview.innerHTML = '<div class="pv-chrome"><i></i><i></i><i></i><span class="url">'+esc(t.url)+'</span></div>'+
-      '<div class="pv-alert">'+esc(t.alert)+'</div>'+
-      '<div class="pv-nav"><span class="pv-logo">'+esc(t.biz)+'</span><span class="pv-call">Call now</span></div>'+
-      '<div class="pv-hero"><h3>'+esc(t.head)+'</h3><p>'+esc(t.sub)+'</p><div class="pv-btns"><span>'+esc(t.btns[0])+'</span><span>'+esc(t.btns[1])+'</span></div></div>'+
-      '<div class="pv-feats">'+t.feats.map(function(f){ return '<div><b>'+esc(f[0])+'</b>'+esc(f[1])+'</div>'; }).join("")+'</div>';
-    link.href = "sample.html?t=" + k; link.textContent = "Open the full " + t.label.toLowerCase() + " sample";
+    var t = TRADES[k], url = "samples/" + k + "/";
+    if(!frame){
+      preview.innerHTML = '<div class="pv-chrome"><i></i><i></i><i></i><span class="url"></span></div><div class="pv-frame"><iframe title="Live sample website" loading="lazy" tabindex="-1"></iframe></div>';
+      frame = $("iframe", preview); box = $(".pv-frame", preview);
+      if("ResizeObserver" in window) new ResizeObserver(fit).observe(box); else window.addEventListener("resize", fit);
+    }
+    $(".url", preview).textContent = t.url; frame.src = url; fit();
+    link.href = url; link.textContent = "Open the full " + t.label.toLowerCase() + " sample";
     if(tradeLink){ tradeLink.href = t.page; tradeLink.textContent = "Websites for " + t.label.toLowerCase(); }
   }
   render("glass");
   picker.addEventListener("click", function(e){
     var b = e.target.closest(".pick"); if(!b) return;
     $$(".pick", picker).forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); });
-    if(reduce){ render(b.dataset.trade); return; }
-    preview.classList.add("building"); Bot.say("Building a " + TRADES[b.dataset.trade].label.toLowerCase() + " site…", 1600);
-    setTimeout(function(){ render(b.dataset.trade); preview.classList.remove("building"); }, 320);
+    if(!reduce) Bot.say("Here's a " + TRADES[b.dataset.trade].label.toLowerCase() + " site. Scroll around in it!", 2400);
+    render(b.dataset.trade);
   });
 }
 
-/* ---------- Sample site page ---------- */
+/* ---------- Old sample page: send to the new sample sites ---------- */
 var sample = $("#sample-root");
 if(sample){
   var q = new URLSearchParams(location.search).get("t"); if(!TRADES[q]) q = "plumbing";
-  var t = TRADES[q];
-  document.title = t.biz + " (sample concept) | Foundry Systems";
-  sample.style.setProperty("--pv-main", t.main); sample.style.setProperty("--pv-accent", t.accent);
-  var others = Object.keys(TRADES).map(function(k){ return '<a class="btn '+(k===q?'btn-primary':'btn-ghost')+'" href="sample.html?t='+k+'">'+TRADES[k].label+'</a>'; }).join("");
-  sample.innerHTML =
-   '<div class="notice" style="margin-bottom:22px"><b>Sample concept.</b> '+esc(t.biz)+' is a made-up business. This demo shows what a Foundry Systems '+esc(t.label.toLowerCase())+' site can look like. Buttons and forms here don\'t send anything.</div>'+
-   '<div class="btn-row" style="margin-bottom:26px">'+others+'</div>'+
-   '<div class="preview" style="--pv-main:'+t.main+';--pv-accent:'+t.accent+'">'+
-   '<div class="pv-chrome"><i></i><i></i><i></i><span class="url">'+esc(t.url)+'</span></div>'+
-   '<div class="pv-alert">'+esc(t.alert)+'</div>'+
-   '<div class="pv-nav"><span class="pv-logo">'+esc(t.biz)+'</span><span style="display:flex;gap:14px;align-items:center;font-size:.9rem;font-weight:600"><span>Services</span><span>About</span><span>Reviews</span><span class="pv-call">Call now</span></span></div>'+
-   '<div class="pv-hero" style="padding:64px 28px"><h3 style="font-size:clamp(2rem,5vw,3.4rem)">'+esc(t.head)+'</h3><p>'+esc(t.sub)+'</p><div class="pv-btns"><span>'+esc(t.btns[0])+'</span><span>'+esc(t.btns[1])+'</span></div></div>'+
-   '<div style="padding:30px 28px"><h3 style="color:'+t.main+';text-transform:uppercase">Services</h3><div class="pv-feats" style="padding:0">'+
-     t.services.map(function(s){ return '<div><b>'+esc(s)+'</b>Quick description of this service and what it includes.</div>'; }).join("")+'</div></div>'+
-   '<div style="padding:0 28px 30px"><h3 style="color:'+t.main+';text-transform:uppercase">Why customers pick us</h3><div class="pv-feats" style="padding:0">'+
-     t.feats.map(function(f){ return '<div><b>'+esc(f[0])+'</b>'+esc(f[1])+'</div>'; }).join("")+'</div></div>'+
-   '<div style="padding:0 28px 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">'+
-     '<div style="background:#f6f5f2;border-radius:12px;padding:20px"><b style="color:'+t.main+'">★★★★★</b><p style="margin:.5em 0 0">"Showed up when they said, fixed it fast, and the price was what they quoted." <br><small>Sample review</small></p></div>'+
-     '<div style="background:#f6f5f2;border-radius:12px;padding:20px"><b style="color:'+t.main+'">★★★★★</b><p style="margin:.5em 0 0">"Easy to book online and they texted me when they were on the way." <br><small>Sample review</small></p></div>'+
-   '</div>'+
-   '<div style="padding:0 28px 34px"><h3 style="color:'+t.main+';text-transform:uppercase">Request a quote</h3>'+
-     '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">'+
-     ['Your name','Phone','Town','What do you need?'].map(function(l){ return '<div style="border:1.5px solid #ddd;border-radius:8px;padding:14px;color:#888">'+l+'</div>'; }).join("")+
-     '</div><div class="pv-btns"><span>Send my request</span></div></div>'+
-   '<div style="background:'+t.main+';color:#fff;padding:22px 28px;font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><span>'+esc(t.biz)+' · Serving the Peace region</span><span>Mon–Fri 8–5 · Sat by appointment</span></div>'+
-   '</div>'+
-   '<div class="btn-row" style="margin-top:28px"><a class="btn btn-primary" href="start.html">Start my project</a><a class="btn btn-ghost" href="'+t.page+'">Websites for '+esc(t.label.toLowerCase())+'</a></div>';
+  location.replace("samples/" + q + "/");
 }
 
 /* ---------- Price calculator ---------- */

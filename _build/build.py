@@ -244,7 +244,7 @@ home = f'''
 <div class="grid g3">
 {mock("https://elitewindshields.ca","Elite Windshields","Windshields, rock chips, tinting and fleet glass, with a quote button on every page.","#0f3b57","Client site",True,True,img=EW)}
 {mock("https://worsleybaptistchurch.ca","Worsley Baptist Church","Service times, ministries, events and the latest sermon for a rural church.","#3a2a1a","Client site",True,True,img=WB)}
-{mock("sample.html?t=plumbing","Summit Plumbing & Drain","Emergency call banner and service area map.","#0c2d48","Sample concept")}
+{mock("samples/plumbing/","Summit Plumbing & Drain","A \"what's going on?\" helper and a service area map.","#0c2d48","Sample concept")}
 </div>
 <p style="margin-top:28px"><a class="btn btn-primary" href="work.html">See all sample work</a></p>
 </div></section>
@@ -350,12 +350,12 @@ work = head("Sample work", "Real sites. Working samples.", "Real client work com
 <div class="section-head reveal"><span class="eyebrow">Sample concepts</span><h2>A working sample for every trade.</h2>
 <p class="lede">These are made-up businesses, built to show what's possible. Real client projects will replace them as they come in.</p></div>
 <div class="grid g3">
-{mock("sample.html?t=glass","Clearview Glass & Windshield","Shows off: windshield quote form with vehicle info","#0f3b57","Sample concept")}
-{mock("sample.html?t=auto","Northline Auto Repair","Shows off: service menu and appointment requests","#1f2a1f","Sample concept")}
-{mock("sample.html?t=electrical","Brightwire Electric","Shows off: licensed and insured badges, emergency calls","#1d1f3a","Sample concept")}
-{mock("sample.html?t=plumbing","Summit Plumbing & Drain","Shows off: 24/7 emergency call banner","#0c2d48","Sample concept")}
-{mock("sample.html?t=hvac","Aurora Heating & Air","Shows off: seasonal specials and maintenance plans","#2a1a12","Sample concept")}
-{mock("sample.html?t=landscaping","Riverbend Landscaping","Shows off: before/after slider and big galleries","#1e3a24","Sample concept")}
+{mock("samples/glass/","Clearview Glass & Windshield","Shows off: a quote form right on the photo, and a chip-or-crack checker","#0f3b57","Sample concept")}
+{mock("samples/auto/","Northline Auto Repair","Shows off: a shop price board and booking by day","#1f2a1f","Sample concept")}
+{mock("samples/electrical/","Brightwire Electric","Shows off: an EV charger cost estimator and a 24/7 emergency line","#1d1f3a","Sample concept")}
+{mock("samples/plumbing/","Summit Plumbing & Drain","Shows off: a \"what's going on?\" helper and a service area map","#0c2d48","Sample concept")}
+{mock("samples/hvac/","Aurora Heating & Air","Shows off: a heating and cooling switch, and comfort plans","#2a1a12","Sample concept")}
+{mock("samples/landscaping/","Riverbend Landscaping","Shows off: before/after slider and big galleries","#1e3a24","Sample concept")}
 </div></div></section>
 <section class="section"><div class="wrap">
 <div class="section-head reveal"><span class="eyebrow">Before and after</span><h2>Drag the slider.</h2><p class="lede">An outdated trade website on the left, a Foundry Systems redesign on the right.</p></div>
@@ -386,7 +386,7 @@ for k, t in TRADES.items():
 <div class="reveal"><span class="eyebrow">Sound familiar?</span><h2>Common website problems for {t["who"]}</h2>
 <ul class="checks">{"".join(f"<li>{e(p)}</li>" for p in t["problems"])}</ul></div>
 <div class="card reveal"><span class="tag">Sample concept</span><h3>See a {t["label"].lower()} site in action</h3><p class="muted">A working sample site for a made-up {t["label"].lower()} business. Click around and picture your name on it.</p>
-<a class="btn btn-primary" href="sample.html?t={k}">Open the sample site</a></div>
+<a class="btn btn-primary" href="samples/{k}/">Open the sample site</a></div>
 </div></section>
 <section class="section light"><div class="wrap">
 <div class="section-head reveal"><span class="eyebrow">Built in</span><h2>Features made for {t["who"]}</h2></div>

@@ -360,3 +360,7 @@ input[type=file]{width:100%;padding:18px;border:2px dashed #4a4a52;border-radius
 .shot-hint{font-size:.88rem;margin:12px 0 0}
 @media (hover:none){.shot-hint{display:none}}
 @media (prefers-reduced-motion:reduce){.mock:hover .shot img{transform:none}}
+
+/* Live sample preview (home trade picker) */
+.pv-frame{position:relative;overflow:hidden;background:#fff;height:540px}
+.pv-frame iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform-origin:0 0}
