@@ -159,7 +159,7 @@ def plan_cards(compact=False):
 <div class="card plan popular tilt reveal"><span class="ribbon">Most popular</span><span class="tag">8 pages</span><h3>Complete Website</h3>
 <div class="price">$1,997 <small>one-time build</small></div>
 <p class="muted">Room to give your top services their own pages and show up in more searches.</p>
-<ul class="checks"><li>Everything in Core Website</li><li>Separate pages for your top services</li><li>Service Areas, FAQ or Specials pages</li><li>Google Business Profile setup</li><li>A page for each town you serve</li><li>Care plan included (hosting, updates, fixes), first 30 days free</li></ul>
+<ul class="checks"><li>Everything in Core Website</li><li>Separate pages for your top services</li><li>Service Areas, FAQ or Specials pages</li><li>Care plan included (hosting, updates, fixes), first 30 days free</li></ul>
 <a class="btn btn-primary" href="start.html?plan=complete">Start with Complete</a></div>
 </div>'''
 
@@ -299,13 +299,12 @@ pricing = head("Pricing", "Fixed prices. Written down.", "Two website builds, on
 <tr><td><b>Care plan</b> (hosting, updates, fixes)</td><td>Included, first 30 days free: <span data-promo>$99/mo for life (2026 special), then </span>$147/mo</td><td>Same</td></tr>
 <tr><td><b>Launch</b></td><td>About 2 weeks from project form</td><td>About 2 weeks from project form</td></tr>
 <tr><td><b>Contact and quote forms, mobile-friendly, click-to-call</b></td><td>Yes</td><td>Yes</td></tr>
-<tr><td><b>Extras</b></td><td>–</td><td>Google Business Profile setup, and a page for each town served</td></tr>
 </tbody></table></div>
 </div></section>
 <section class="section"><div class="wrap">
 <div class="section-head reveal"><span class="eyebrow">Add-ons</span><h2>Need a little more?</h2><p class="lede">Optional extras, quoted up front before any work starts.</p></div>
 <div class="grid g3">
-{"".join(f'<div class="card reveal"><h3>{t}</h3><p class="muted">{d}</p></div>' for t,d in [("Extra page","Need one more page than your plan includes? Easy."),("Logo design","A simple, clean logo if you don't have one yet."),("Google Business Profile setup","Get found on Google Maps and start collecting reviews."),("Business email setup","An email address at your own domain, like you@yourbusiness.ca."),("Copywriting","I write the words for your pages so you don't have to."),("French or Spanish version","Reach more customers in their own language.")])}
+{"".join(f'<div class="card reveal"><h3>{t}</h3><p class="muted">{d}</p></div>' for t,d in [("Extra page","Need one more page than your plan includes? Easy."),("Logo design","A simple, clean logo if you don't have one yet."),("Business email setup","An email address at your own domain, like you@yourbusiness.ca."),("Copywriting","I write the words for your pages so you don't have to."),("French or Spanish version","Reach more customers in their own language.")])}
 </div></div></section>
 <section class="section light"><div class="wrap">
 <div class="section-head reveal"><span class="eyebrow">Pricing questions</span><h2>The fine print, in plain English.</h2></div>
