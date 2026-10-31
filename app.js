@@ -399,7 +399,7 @@ if(wz){
 (function(){
   var on = false; try{ on = localStorage.getItem("fs-style-picker") === "1"; }catch(e){}
   if(!on) return;
-  var STYLES = [["original","Original"],["blueprint","Blueprint"],["print","Editorial"],["signage","Signage"]];
+  var STYLES = [["original","Original"],["blueprint","Blueprint"],["print","Editorial"],["signage","Signage"],["forge","Forge (mix)"]];
   var root = document.documentElement, box = document.createElement("div");
   box.className = "style-switch"; box.setAttribute("role","group"); box.setAttribute("aria-label","Site style");
   box.innerHTML = '<b><span>Site style</span><button type="button" aria-label="Collapse">–</button></b><div class="opts">'+

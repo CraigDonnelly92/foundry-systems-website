@@ -309,3 +309,70 @@
 @media (max-width:1300px){[data-style=signage] .menu-toggle{display:block}[data-style=signage] .menu{display:none;position:absolute;left:0;right:0;top:72px;flex-direction:column;background:var(--charcoal);border-bottom:4px solid var(--orange);padding:10px 16px 18px}[data-style=signage] .menu.open{display:flex}[data-style=signage] .menu .only-mobile{display:block}[data-style=signage] .nav-cta{display:none}}
 [data-style=signage] .pick{min-width:0;overflow-wrap:anywhere}
 @media (max-width:620px){[data-style=signage] .care-price{font-size:3.4rem}[data-style=signage] .pick{font-size:.92rem;padding:12px 4px;border-width:2px}[data-style=signage] .card{box-shadow:6px 6px 0 var(--orange)}[data-style=signage] .light .card{box-shadow:6px 6px 0 var(--ink)}}
+
+/* =============================================================
+   4) FORGE: Original's warmth (rounded cards, blueprint grid,
+   glow, sparks) + Signage's heavy type, tag labels, press-down
+   buttons and hazard-stripe dividers, all a notch quieter.
+   ============================================================= */
+[data-style=forge]{--radius:10px;--head:"Anton","Barlow Condensed",Impact,sans-serif;--label:"Barlow Condensed","Arial Narrow",sans-serif}
+[data-style=forge] h1,[data-style=forge] h2{font-weight:400;letter-spacing:.012em;line-height:.96}
+[data-style=forge] h1{font-size:clamp(2.9rem,8vw,6rem)}
+[data-style=forge] h2{font-size:clamp(2.2rem,5vw,3.8rem)}
+[data-style=forge] h3{font-family:var(--label);font-weight:700;font-size:1.6rem;letter-spacing:.01em;text-transform:uppercase}
+[data-style=forge] .eyebrow{background:var(--orange);color:var(--ink);font:700 .92rem/1 var(--label);letter-spacing:.08em;padding:7px 11px 6px;border-radius:5px}
+[data-style=forge] .eyebrow::before{display:none}
+[data-style=forge] .stat b{font:400 2.7rem/1 var(--head)}
+[data-style=forge] .stat span{font:600 .98rem var(--label);text-transform:uppercase;letter-spacing:.04em}
+[data-style=forge] .rivets{height:10px;max-width:none;opacity:1;background:repeating-linear-gradient(-45deg,var(--orange) 0 12px,var(--charcoal) 12px 24px)}
+[data-style=forge] .site-header{border-bottom:3px solid var(--orange)}
+[data-style=forge] .brand{font:400 1.55rem/1 var(--head);letter-spacing:.04em}
+[data-style=forge] .menu a{font:700 1.05rem/1 var(--label);text-transform:uppercase;letter-spacing:.05em;padding:10px 9px}
+[data-style=forge] .menu a[aria-current=page]{background:transparent;color:var(--orange)}
+[data-style=forge] .promo{font:700 .98rem/1.2 var(--label);text-transform:uppercase;letter-spacing:.04em}
+/* press-down buttons, softened */
+[data-style=forge] .btn{border-radius:8px;border:2px solid var(--ink);font:700 1.12rem/1 var(--label);text-transform:uppercase;letter-spacing:.05em;box-shadow:4px 4px 0 rgba(244,241,236,.9);transition:transform .08s,box-shadow .08s,background .15s}
+[data-style=forge] .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(244,241,236,.9)}
+[data-style=forge] .btn:active{transform:translate(4px,4px);box-shadow:0 0 0 transparent}
+[data-style=forge] .btn-ghost{border-color:rgba(244,241,236,.55);box-shadow:none}
+[data-style=forge] .btn-ghost:hover{box-shadow:none;transform:translateY(-2px)}
+[data-style=forge] .light .btn-primary,[data-style=forge] .cta-band .btn-primary{box-shadow:4px 4px 0 var(--ink)}
+[data-style=forge] .light .btn-ghost{border-color:var(--ink);color:var(--ink)}
+[data-style=forge] .nav-cta .btn,[data-style=forge] .mobile-bar .btn{box-shadow:none;font-size:1rem}
+/* cards: original panels, firmer edge, shadow on hover */
+[data-style=forge] .card{border:2px solid rgba(244,241,236,.12);transition:transform .15s,box-shadow .15s,border-color .15s}
+[data-style=forge] .card:hover{border-color:var(--orange);box-shadow:6px 6px 0 var(--orange);transform:translate(-2px,-2px)!important}
+[data-style=forge] .light .card{border-color:#e4dfd6}
+[data-style=forge] .light .card:hover{border-color:var(--ink);box-shadow:6px 6px 0 var(--ink)}
+[data-style=forge] .icon{background:var(--orange);color:var(--ink);border-radius:9px}
+[data-style=forge] .step::before{font:400 2.3rem/1 var(--head)}
+[data-style=forge] .plan.popular{border:3px solid var(--orange);box-shadow:8px 8px 0 var(--orange);transform:none}
+[data-style=forge] .ribbon{font:700 .95rem var(--label);letter-spacing:.08em;border:2px solid var(--ink);transform:rotate(2deg)}
+[data-style=forge] .price{font:400 4rem/1 var(--head)}
+[data-style=forge] .care-price{font:400 4.4rem/1 var(--head)}
+[data-style=forge] .strike{font:400 1.7rem var(--head)}
+[data-style=forge] .calc-out{font:400 1.9rem/1.1 var(--head);letter-spacing:.01em}
+[data-style=forge] .tag{font:700 .82rem/1 var(--label);letter-spacing:.07em;border-radius:5px}
+[data-style=forge] .countdown{font:700 1rem var(--label);text-transform:uppercase;letter-spacing:.04em}
+[data-style=forge] .pill-list li{font:700 .98rem var(--label);text-transform:uppercase;letter-spacing:.03em}
+[data-style=forge] summary{font:700 1.22rem/1.25 var(--label);text-transform:uppercase;letter-spacing:.02em}
+[data-style=forge] .cta-band{border:3px solid var(--ink);box-shadow:10px 10px 0 rgba(244,241,236,.9);border-radius:16px}
+[data-style=forge] .mock-screen{border:2px solid rgba(244,241,236,.18)}
+[data-style=forge] .light .mock-screen{border-color:var(--ink)}
+[data-style=forge] .pick{font:700 1.02rem var(--label);text-transform:uppercase;letter-spacing:.04em}
+[data-style=forge] .pick[aria-pressed=true]{background:var(--orange);color:var(--ink);border-color:var(--orange);box-shadow:4px 4px 0 rgba(244,241,236,.9)}
+[data-style=forge] .pick[aria-pressed=true] svg{color:var(--ink)}
+[data-style=forge] .preview{box-shadow:10px 10px 0 var(--orange);border:2px solid rgba(244,241,236,.2)}
+[data-style=forge] .field label,[data-style=forge] .field legend{font:700 1.08rem var(--label);text-transform:uppercase;letter-spacing:.03em}
+[data-style=forge] .choice span{font:700 1.02rem var(--label);text-transform:uppercase;letter-spacing:.03em}
+[data-style=forge] .choice input:checked+span{background:var(--orange);color:var(--ink);border-color:var(--orange)}
+[data-style=forge] .form-card{border:2px solid rgba(244,241,236,.14)}
+[data-style=forge] .seg button{font:700 1.02rem var(--label);text-transform:uppercase}
+[data-style=forge] .quote{font:400 1.9rem/1.15 var(--head);text-transform:uppercase;letter-spacing:.01em}
+[data-style=forge] .page-head{border-bottom:3px solid var(--orange)}
+[data-style=forge] table.compare th{font:400 1.35rem var(--head);letter-spacing:.02em}
+[data-style=forge] .site-footer{border-top:3px solid var(--orange)}
+[data-style=forge] .site-footer h4{font:700 1.08rem var(--label);letter-spacing:.06em}
+@media (max-width:1300px){[data-style=forge] .nav-cta .btn-ghost{display:none}}
+@media (max-width:1300px){[data-style=forge] .menu-toggle{display:block}[data-style=forge] .menu{display:none;position:absolute;left:0;right:0;top:72px;flex-direction:column;background:var(--charcoal);border-bottom:3px solid var(--orange);padding:10px 16px 18px}[data-style=forge] .menu.open{display:flex}[data-style=forge] .menu .only-mobile{display:block}[data-style=forge] .nav-cta{display:none}}
+@media (max-width:620px){[data-style=forge] .care-price{font-size:3.4rem}[data-style=forge] .pick{font-size:.9rem;padding:12px 4px}[data-style=forge] .preview{box-shadow:6px 6px 0 var(--orange)}[data-style=forge] .cta-band{box-shadow:6px 6px 0 rgba(244,241,236,.9)}}
