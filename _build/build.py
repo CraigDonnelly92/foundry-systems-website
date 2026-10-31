@@ -9,6 +9,8 @@ os.makedirs(OUT, exist_ok=True)
 SITE = "https://foundrysystems.ca"
 PHONE = "780-834-8078"; TEL = "+17808348078"; EMAIL = "craig.foundrysystems@gmail.com"
 FORM_ACTION = "https://formsubmit.co/" + EMAIL
+DEFAULT_STYLE = "original"
+STYLE_SCRIPT = """<script>(function(){var F={blueprint:"family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600",print:"family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600",signage:"family=Anton&family=Barlow+Condensed:wght@600;700"};var d=document.documentElement,s="%s";try{var q=new URLSearchParams(location.search);if(q.get("style"))localStorage.setItem("fs-style",q.get("style"));if(q.has("styles"))localStorage.setItem("fs-style-picker",q.get("styles")==="off"?"0":"1");s=localStorage.getItem("fs-style")||s;}catch(e){}if(!/^(original|blueprint|print|signage)$/.test(s))s="%s";d.setAttribute("data-style",s);window.FS_FONTS=F;window.FS_loadFont=function(k){if(!F[k]||document.getElementById("ff-"+k))return;var l=document.createElement("link");l.id="ff-"+k;l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?"+F[k]+"&display=swap";document.head.appendChild(l);};window.FS_loadFont(s);})();</script>""" % (DEFAULT_STYLE, DEFAULT_STYLE)
 ROBOT = open(os.path.join(SRC, "robot.svg"), encoding="utf-8").read()
 e = html.escape
 
@@ -73,6 +75,8 @@ def page(fname, title, desc, body, active=None, cta=True, bot_hello=None, extra_
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="themes.css">
+{STYLE_SCRIPT}
 <script type="application/ld+json">{schema()}</script>
 {extra_head}
 </head>
@@ -642,7 +646,7 @@ nf = f'''<section class="section blueprint"><div class="wrap" style="max-width:7
 page("404.html", "Page Not Found | Foundry Systems", "That page couldn't be found.", nf, None, cta=False, extra_head='<meta name="robots" content="noindex">', body_attr=' data-bot-hello="Hmm… I can\'t find that page either."')
 
 # ------------------------------- STATIC ------------------------------------
-for f in ("styles.css", "app.js"):
+for f in ("styles.css", "themes.css", "app.js"):
     shutil.copy(os.path.join(SRC, f), os.path.join(OUT, f))
 with open(os.path.join(OUT, "favicon.svg"), "w") as f:
     f.write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect x="2" y="2" width="36" height="36" rx="9" fill="#26262B" stroke="#FF6B1A" stroke-width="2"/><path d="M13 11h15v5H18.5v3.5H26v5h-7.5V30H13z" fill="#FF6B1A"/></svg>')

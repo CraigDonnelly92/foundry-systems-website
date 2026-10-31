@@ -395,6 +395,26 @@ if(wz){
   show(typeof startAt === "number" ? startAt : 0);
 }
 
+/* ---------- Style switcher (owner preview: open any page with ?styles) ---------- */
+(function(){
+  var on = false; try{ on = localStorage.getItem("fs-style-picker") === "1"; }catch(e){}
+  if(!on) return;
+  var STYLES = [["original","Original"],["blueprint","Blueprint"],["print","Editorial"],["signage","Signage"]];
+  var root = document.documentElement, box = document.createElement("div");
+  box.className = "style-switch"; box.setAttribute("role","group"); box.setAttribute("aria-label","Site style");
+  box.innerHTML = '<b><span>Site style</span><button type="button" aria-label="Collapse">–</button></b><div class="opts">'+
+    STYLES.map(function(s){ return '<button type="button" data-s="'+s[0]+'">'+s[1]+'</button>'; }).join("")+'</div>';
+  document.body.appendChild(box);
+  function mark(){ var cur = root.getAttribute("data-style"); $$(".opts button", box).forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.s === cur ? "true" : "false"); }); }
+  $(".opts", box).addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    if(window.FS_loadFont) window.FS_loadFont(b.dataset.s);
+    root.setAttribute("data-style", b.dataset.s); store("fs-style", b.dataset.s); mark();
+  });
+  $("b button", box).addEventListener("click", function(){ var c = box.classList.toggle("closed"); this.textContent = c ? "+" : "–"; this.setAttribute("aria-label", c ? "Expand" : "Collapse"); });
+  mark();
+})();
+
 /* ---------- Thank-you page ---------- */
 var ty = $("#thanks-root");
 if(ty){
