@@ -7,7 +7,9 @@ var CONFIG = {
   email: "craig.foundrysystems@gmail.com",
   promoEnd: new Date(2027, 0, 1, 0, 0, 0),   // promo switches off Jan 1, 2027 (visitor's local time)
   // Paste Stripe payment links here when ready; leave blank to hide the pay buttons.
-  stripe: { core: "", complete: "" }
+  stripe: { core: "", complete: "" },
+  // Paste your Calendly event link here (e.g. "https://calendly.com/foundrysystems/kickoff-call")
+  calendly: ""
 };
 window.FS_CONFIG = CONFIG;
 
@@ -233,8 +235,8 @@ if(botTpl && !document.body.hasAttribute("data-no-bot")){
 
 /* ---------- Simple forms (contact) ---------- */
 function setNext(form, kind){
-  var n = $('input[name="_next"]', form);
-  if(n){ var base = location.href.replace(/[^\/]*([?#].*)?$/, ""); n.value = base + "thanks.html?form=" + kind; }
+  var base = location.href.replace(/[^\/]*([?#].*)?$/, "");
+  $$('input[name="_next"],input[name="redirect"]', form).forEach(function(n){ n.value = base + "thanks.html?form=" + kind; });
 }
 var cf = $("#contact-form");
 if(cf){
@@ -259,14 +261,21 @@ if(wz){
     var pct = ((cur+1)/steps.length)*100;
     fill.style.width = pct + "%"; if(pbot) pbot.style.left = "calc(" + pct + "% - " + (pct>95?20:0) + "px)";
     label.textContent = steps[cur].getAttribute("data-title"); count.textContent = "Step " + (cur+1) + " of " + steps.length;
-    prev.style.visibility = cur===0 ? "hidden" : "visible";
-    next.hidden = cur === steps.length-1; send.hidden = cur !== steps.length-1;
-    if(cur === steps.length-1) Bot.say("Last step! You're almost done.");
+    var last = cur === steps.length-1;
+    prev.hidden = cur === 0; next.hidden = last; send.hidden = !last;
+    if(last){ Bot.say("Last step! You're almost done."); loadCalendly(); }
     var top = $(".wizard-top"); if(top) window.scrollTo({top: wz.getBoundingClientRect().top + window.scrollY - 140, behavior: reduce?"auto":"smooth"});
   }
   function valid(){
     var ok = true;
-    $$("[required]", steps[cur]).forEach(function(f){ if(!f.checkValidity()){ if(ok){ f.reportValidity(); f.focus(); } ok = false; } });
+    $$("[required]", steps[cur]).forEach(function(f){
+      if(!f.checkValidity()){
+        var c = f.closest(".confirm");
+        if(c){ c.classList.remove("shake"); void c.offsetWidth; c.classList.add("shake","missing"); }
+        if(ok){ f.reportValidity(); if(c) c.scrollIntoView({block:"center", behavior: reduce?"auto":"smooth"}); else f.focus(); }
+        ok = false;
+      }
+    });
     return ok;
   }
   next.addEventListener("click", function(){ if(valid()){ save(); show(cur+1); } });
@@ -276,6 +285,26 @@ if(wz){
     // keep the chosen plan for the thank-you page, then clear saved answers
     store("fs-last-plan", (wz.plan && wz.plan.value) || ""); store(KEY, null);
   });
+
+  $$(".confirm input", wz).forEach(function(i){ i.addEventListener("change", function(){ i.closest(".confirm").classList.toggle("missing", !i.checked); }); });
+
+  // Kickoff call booking (Calendly)
+  var calLoaded = false, calBox = $("#calendly-box"), calField = $("#kickoff-field");
+  function loadCalendly(){
+    if(calLoaded || !calBox) return; calLoaded = true;
+    var url = CONFIG.calendly;
+    if(!url){ calBox.innerHTML = '<p class="cal-wait"><b>Booking calendar coming soon.</b> Send the form and I\'ll reach out within one business day to set up a time that works.</p>'; return; }
+    var nm = wz.querySelector('[name="Name"]'), em = wz.querySelector('[name="Email"]');
+    var q = "hide_gdpr_banner=1&background_color=26262b&text_color=f4f1ec&primary_color=ff6b1a" +
+      (nm && nm.value ? "&name=" + encodeURIComponent(nm.value) : "") + (em && em.value ? "&email=" + encodeURIComponent(em.value) : "");
+    calBox.innerHTML = '<iframe title="Book your kickoff call" src="' + url + (url.indexOf("?")>-1?"&":"?") + q + '&embed_type=Inline&embed_domain=' + location.hostname + '" loading="lazy"></iframe>';
+    window.addEventListener("message", function(e){
+      if(e.origin.indexOf("calendly.com") === -1 || !e.data || e.data.event !== "calendly.event_scheduled") return;
+      var uri = (e.data.payload && e.data.payload.event && e.data.payload.event.uri) || "";
+      calField.value = "Booked through Calendly " + uri;
+      calBox.insertAdjacentHTML("beforebegin", '<p class="cal-done">Your kickoff call is booked. You\'ll get a confirmation email from Calendly.</p>');
+    });
+  }
 
   // trade-specific questions
   function trade(){ var c = $('input[name="Type of business"]:checked', wz); return c ? c.value : ""; }

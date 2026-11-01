@@ -8,7 +8,8 @@ os.makedirs(OUT, exist_ok=True)
 
 SITE = "https://foundrysystems.ca"
 PHONE = "780-834-8078"; TEL = "+17808348078"; EMAIL = "craig.foundrysystems@gmail.com"
-FORM_ACTION = "https://formsubmit.co/" + EMAIL
+WEB3FORMS_KEY = ""   # paste the Web3Forms access key here to switch all forms to Web3Forms
+FORM_ACTION = "https://api.web3forms.com/submit" if WEB3FORMS_KEY else "https://formsubmit.co/" + EMAIL
 ROBOT = open(os.path.join(SRC, "robot.svg"), encoding="utf-8").read()
 e = html.escape
 
@@ -337,8 +338,8 @@ pricing = head("Pricing", "Fixed prices. Written down.", "Two website builds, on
 </div></section>
 <section class="section"><div class="wrap">
 <div class="section-head reveal"><span class="eyebrow">Add-ons</span><h2>Need a little more?</h2><p class="lede">Optional extras, quoted up front before any work starts.</p></div>
-<div class="grid g3">
-{"".join(f'<div class="card reveal"><h3>{t}</h3><p class="muted">{d}</p></div>' for t,d in [("Extra page","Need one more page than your plan includes? Easy."),("Logo design","A simple, clean logo if you don't have one yet."),("Business email setup","An email address at your own domain, like you@yourbusiness.ca."),("Copywriting","I write the words for your pages so you don't have to."),("French or Spanish version","Reach more customers in their own language.")])}
+<div class="grid g2">
+{"".join(f'<div class="card reveal"><h3>{t}</h3><p class="muted">{d}</p></div>' for t,d in [("Extra page","Need one more page than your plan includes? Easy."),("Logo design","A simple, clean logo if you don't have one yet."),("Business email setup","An email address at your own domain, like you@yourbusiness.ca."),("Copywriting","I write the words for your pages so you don't have to.")])}
 </div></div></section>
 <section class="section light"><div class="wrap">
 <div class="section-head reveal"><span class="eyebrow">Pricing questions</span><h2>The fine print, in plain English.</h2></div>
@@ -467,9 +468,14 @@ page("faq.html", "FAQ | Foundry Systems", "Answers about owning your website, ho
 
 # ------------------------------- CONTACT -----------------------------------
 TRADE_OPTS = ["Glass","Auto repair","Electrical","Plumbing","HVAC","Landscaping","Other"]
-hidden = lambda subj, nxt: (f'<input type="hidden" name="_subject" value="{e(subj)}"><input type="hidden" name="_template" value="table">'
-        f'<input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="{nxt}">'
-        '<input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">')
+def hidden(subj, nxt):
+    if WEB3FORMS_KEY:
+        return (f'<input type="hidden" name="access_key" value="{WEB3FORMS_KEY}"><input type="hidden" name="subject" value="{e(subj)}">'
+                f'<input type="hidden" name="from_name" value="Foundry Systems website"><input type="hidden" name="redirect" value="{nxt}">'
+                '<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">')
+    return (f'<input type="hidden" name="_subject" value="{e(subj)}"><input type="hidden" name="_template" value="table">'
+            f'<input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="{nxt}">'
+            '<input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">')
 contact = head("Contact", "Got a question? Ask away.", "Not ready for the full project form? No problem. This takes under a minute.") + f'''
 <section class="section"><div class="wrap split" style="align-items:start">
 <form class="form form-card reveal" id="contact-form" action="{FORM_ACTION}" method="POST">
@@ -547,7 +553,7 @@ steps.append(("Plan and timing", f'''
 <p data-promo><b style="color:var(--orange)">$99/mo locked in for life</b> when your build invoice is paid by Dec 31, 2026 (normally $147/mo).</p>
 <p data-nopromo><b>$147/mo</b>, starting 30 days after your site goes live.</p>
 <p data-promo class="muted">Your first 30 days after launch are free.</p>
-<label class="choice"><input type="checkbox" name="Care plan acknowledged" value="Yes" required><span>I understand the care plan is included and billed monthly, starting 30 days after my site goes live</span></label></div>
+<label class="confirm"><input type="checkbox" name="Care plan acknowledged" value="Yes" required><span class="box" aria-hidden="true"></span><span class="txt"><b class="need">Required: tap the box to confirm</b>I understand the care plan is included and billed monthly, starting 30 days after my site goes live.</span></label></div>
 {fld("Ideal launch date","Ideal launch date","date")}
 {fld("Why that date?","Launch date reason",ph="Before spring busy season, grand opening…")}'''))
 steps.append(("Location, service area and hours", f'''
@@ -555,7 +561,7 @@ steps.append(("Location, service area and hours", f'''
 <fieldset class="field"><legend>Show the address on the website?</legend>{radios("Show address", ["Yes, show it","No, keep it private"])}</fieldset>
 <fieldset class="field"><legend>Do customers come to you, or do you go to them?</legend>{radios("Customer location", ["They come to my shop","I go to them","Both"])}</fieldset>
 {fld("Towns or areas you serve","Service area","area",ph="Fairview, Grande Prairie, Peace River… or a 100 km radius")}
-<fieldset class="field"><legend>Hours</legend><div class="hours">{"".join(f'<label for="h-{d}">{d}</label><input id="h-{d}" type="text" name="Hours {d}" placeholder="8–5, closed, by appointment…">' for d in days_)}</div></fieldset>
+<fieldset class="field"><legend>Hours</legend><div class="hours">{"".join(f'<label for="h-{d}">{d}</label><input id="h-{d}" type="text" name="Hours {d}" placeholder="e.g. 8–5 or Closed…">' for d in days_)}</div></fieldset>
 {fld("Holiday hours","Holiday hours")}
 <fieldset class="field"><legend>Emergency or after-hours service?</legend>{radios("After-hours service", ["Yes","No"])}</fieldset>
 {fld("Emergency number, if different","Emergency number","tel")}{NS}'''))
@@ -608,12 +614,14 @@ steps.append(("Forms and leads on your new site", f'''
 <fieldset class="field"><legend>Booking or scheduling software you use</legend>{radios("Booking software", ["Housecall Pro","Jobber","ServiceTitan","Calendly","None","Other"])}</fieldset>
 <fieldset class="field"><legend>Want a "Book now" button?</legend>{radios("Book now button", ["Yes","No"])}</fieldset>{NS}'''))
 steps.append(("Extras and wrap-up", f'''
-<fieldset class="field"><legend>Features you'd like</legend>{checks("Features", ["Before/after gallery","Coupons page","Financing info","Service area map","Emergency banner","French or Spanish version","Reviews feed"])}</fieldset>
+<fieldset class="field"><legend>Features you'd like</legend>{checks("Features", ["Before/after gallery","Coupons page","Financing info","Service area map","Emergency banner","Reviews feed"])}</fieldset>
 {fld("Competitors","Competitors","area",hint="Links to 1 to 3 local competitors.")}
 {fld("Anything else?","Anything else","area")}
 {fld("How did you hear about Foundry Systems?","Heard about us")}
-{fld("Times that work for a kickoff call","Kickoff times")}
-<label class="choice"><input type="checkbox" name="Confirmation" value="Info is accurate and I have rights to the photos and logo I uploaded" required><span>My info is accurate, and I have the rights to the photos and logo I uploaded *</span></label>'''))
+<div class="field book-call"><span class="flabel">Book your kickoff call</span><span class="hint">Pick a time that works for you. It's a short call to go over your answers.</span>
+<div id="calendly-box" class="calendly-box"><p class="muted">Loading the calendar…</p></div>
+<input type="hidden" name="Kickoff call" id="kickoff-field" value="Not booked yet"></div>
+<label class="confirm"><input type="checkbox" name="Confirmation" value="Info is accurate and I have rights to the photos and logo I uploaded" required><span class="box" aria-hidden="true"></span><span class="txt"><b class="need">Required: tap the box to confirm</b>My info is accurate, and I have the rights to the photos and logo I uploaded.</span></label>'''))
 
 wsteps = "".join(f'<fieldset class="wstep" data-title="{e(t)}"><legend class="sr" style="position:absolute;left:-9999px">{e(t)}</legend><h2 style="font-size:clamp(1.7rem,4vw,2.4rem)">{e(t)}</h2>{b}</fieldset>' for t, b in steps)
 start = head("Start your project", "Let's build your site.", "Ten short steps, about 15 to 20 minutes. Your answers save on this device as you go, so you can come back to finish.") + f'''
@@ -623,13 +631,13 @@ start = head("Start your project", "Let's build your site.", "Ten short steps, a
 <form class="form form-card" id="intake" action="{FORM_ACTION}" method="POST" enctype="multipart/form-data">
 {hidden("New project form from the Foundry Systems website", "thanks.html?form=project")}
 {wsteps}
-<div class="wizard-nav"><button type="button" class="btn btn-ghost" id="w-prev">← Back</button>
-<span class="saved-note" id="saved-note"></span>
-<button type="button" class="btn btn-primary" id="w-next">Next →</button><button type="submit" class="btn btn-primary" id="w-send" hidden>Send my project form</button></div>
+<div class="wizard-nav"><button type="button" class="btn btn-ghost" id="w-prev">Back</button>
+<button type="button" class="btn btn-primary" id="w-next">Next step</button><button type="submit" class="btn btn-primary" id="w-send" hidden>Send my project form</button></div>
+<p class="saved-note" id="saved-note" aria-live="polite"></p>
 <p class="muted" style="font-size:.85rem;margin:14px 0 0">Uploaded files aren't saved between visits; add them right before you send. <button type="button" id="clear-saved" style="background:none;border:0;color:var(--ember);cursor:pointer;text-decoration:underline;font:inherit">Clear my answers</button></p>
 </form></div></section>'''
 page("start.html", "Start Your Project | Foundry Systems", "The guided project form: everything needed to build your website, in about 15 minutes.", start, None, cta=False,
-     bot_hello="I'll ride along the progress bar. Let's go!")
+     bot_hello="I'll ride along the progress bar. Let's go!", body_attr=' data-page="start"')
 
 # ------------------------------- THANKS ------------------------------------
 thanks = f'''<section class="section blueprint"><div class="wrap" style="max-width:760px;text-align:center" id="thanks-root">
