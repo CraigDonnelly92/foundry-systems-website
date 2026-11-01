@@ -207,6 +207,30 @@ def mock(href, title, sub, color, tag, real=False, ext=False, img=None, tall=Fal
     meta = "" if tall else f'<div class="mock-meta"><span class="tag{" real" if real else ""}">{tag}</span><h3>{e(title)}</h3><p class="muted" style="margin:0">{e(sub)}</p></div>'
     return f'<a class="mock reveal" href="{href}"{tgt}>{screen}{meta}</a>'
 
+U = lambda i, w=900: f"https://images.unsplash.com/photo-{i}?w={w}&q=65&auto=format&fit=crop"
+SAMPLES = {
+ "glass": dict(name="Clearview Glass & Windshield", logo="Clearview Glass", head="See the road again.", img="1595977910374-793e731cb36e",
+   style="--pf:'Manrope',sans-serif;--pw:800;--pt:none;--pls:-.03em;--pc:#fff;--pov:linear-gradient(180deg,rgba(14,34,51,.05) 35%,rgba(14,34,51,.8));--pacc:#2A8BD8", layout="bl"),
+ "auto": dict(name="Northline Auto Repair", logo="Northline Auto", head="Straight answers. Fair bills.", img="1619505372149-07875c35b313",
+   style="--pf:'Saira Condensed',sans-serif;--pw:800;--pt:none;--pls:0;--pc:#EDE6D6;--pov:linear-gradient(90deg,#1C1D1F 0%,#1C1D1F 46%,rgba(28,29,31,.2) 75%);--pacc:#C8302B", layout="split"),
+ "electrical": dict(name="Brightwire Electric", logo="Brightwire", head="Wired right the first time.", img="1621905251189-08b45d6a269e",
+   style="--pf:'Archivo',sans-serif;--pw:850;--pst:125%;--pt:none;--pls:-.01em;--pc:#fff;--pov:linear-gradient(90deg,#101A33 0%,#101A33 48%,rgba(16,26,51,.15) 80%);--pacc:#FFD23F", layout="split"),
+ "plumbing": dict(name="Summit Plumbing & Drain", logo="Summit Plumbing", head="Leaks, clogs and cold showers, fixed today.", img="1676210134188-4c05dd172f89",
+   style="--pf:'Bricolage Grotesque',sans-serif;--pw:800;--pt:none;--pls:-.02em;--pc:#0B2545;--pov:linear-gradient(90deg,#fff 0%,#fff 50%,rgba(255,255,255,0) 50.1%);--pacc:#E8452C", layout="light"),
+ "hvac": dict(name="Aurora Heating & Air", logo="Aurora", head="Warm through minus forty.", img="1723731065038-580d5f55c7f5",
+   style="--pf:'DM Serif Display',serif;--pw:400;--pt:none;--pls:0;--pc:#fff;--pov:linear-gradient(90deg,rgba(20,22,31,.9),rgba(20,22,31,.35) 70%);--pacc:#E8590C", layout="bl"),
+ "landscaping": dict(name="Riverbend Landscaping", logo="Riverbend", head="Yards worth staying home for.", img="1772040942277-b194d9d0b648",
+   style="--pf:'Young Serif',serif;--pw:400;--pt:none;--pls:0;--pc:#fff;--pov:linear-gradient(90deg,rgba(20,32,24,.85),rgba(20,32,24,.3) 70%);--pacc:#D9B26F", layout="bl"),
+}
+SAMPLE_FONTS = '<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&family=Saira+Condensed:wght@800&family=Archivo:wdth,wght@125,850&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=DM+Serif+Display&family=Young+Serif&display=swap" rel="stylesheet">'
+
+def poster(k, sub):
+    d = SAMPLES[k]
+    return (f'<a class="mock reveal" href="samples/{k}/"><div class="mock-screen shot-screen"><div class="pv-chrome"><i></i><i></i><i></i><span class="url">{e(d["name"].split(" &")[0].lower().replace(" ","")+".ca")}</span></div>'
+            f'<div class="poster p-{d["layout"]}" style="{d["style"]}"><img src="{U(d["img"])}" alt="" loading="lazy">'
+            f'<span class="p-logo">{e(d["logo"])}</span><span class="p-head">{e(d["head"])}</span><span class="p-btn"></span></div></div>'
+            f'<div class="mock-meta"><span class="tag">Sample concept</span><h3>{e(d["name"])}</h3><p class="muted" style="margin:0">{e(sub)}</p></div></a>')
+
 EW = "assets/work/elite-windshields.jpg"
 WB = "assets/work/worsley-baptist.jpg"
 
@@ -244,7 +268,7 @@ home = f'''
 <div class="grid g3">
 {mock("https://elitewindshields.ca","Elite Windshields","Windshields, rock chips, tinting and fleet glass, with a quote button on every page.","#0f3b57","Client site",True,True,img=EW)}
 {mock("https://worsleybaptistchurch.ca","Worsley Baptist Church","Service times, ministries, events and the latest sermon for a rural church.","#3a2a1a","Client site",True,True,img=WB)}
-{mock("samples/plumbing/","Summit Plumbing & Drain","A \"what's going on?\" helper and a service area map.","#0c2d48","Sample concept")}
+{poster("plumbing","A “what’s going on?” helper and a service area map.")}
 </div>
 <p style="margin-top:28px"><a class="btn btn-primary" href="work.html">See all sample work</a></p>
 </div></section>
@@ -285,7 +309,7 @@ home = f'''
 '''
 page("index.html", "Foundry Systems | Websites for Trades and Service Businesses",
      "Fixed-price websites for glass shops, auto repair, electricians, plumbers, HVAC and landscapers. Live in about 2 weeks. Based in the Peace region.",
-     home, "index.html")
+     home, "index.html", extra_head=SAMPLE_FONTS)
 
 # ------------------------------- PRICING -----------------------------------
 pricing = head("Pricing", "Fixed prices. Written down.", "Two website builds, one care plan that comes with both, and a 2026 special that's hard to beat. All prices in Canadian dollars.") + f'''
@@ -350,12 +374,12 @@ work = head("Sample work", "Real sites. Working samples.", "Real client work com
 <div class="section-head reveal"><span class="eyebrow">Sample concepts</span><h2>A working sample for every trade.</h2>
 <p class="lede">These are made-up businesses, built to show what's possible. Real client projects will replace them as they come in.</p></div>
 <div class="grid g3">
-{mock("samples/glass/","Clearview Glass & Windshield","Shows off: a quote form right on the photo, and a chip-or-crack checker","#0f3b57","Sample concept")}
-{mock("samples/auto/","Northline Auto Repair","Shows off: a shop price board and booking by day","#1f2a1f","Sample concept")}
-{mock("samples/electrical/","Brightwire Electric","Shows off: an EV charger cost estimator and a 24/7 emergency line","#1d1f3a","Sample concept")}
-{mock("samples/plumbing/","Summit Plumbing & Drain","Shows off: a \"what's going on?\" helper and a service area map","#0c2d48","Sample concept")}
-{mock("samples/hvac/","Aurora Heating & Air","Shows off: a heating and cooling switch, and comfort plans","#2a1a12","Sample concept")}
-{mock("samples/landscaping/","Riverbend Landscaping","Shows off: before/after slider and big galleries","#1e3a24","Sample concept")}
+{poster("glass","Shows off: a quote form right on the photo, and a chip-or-crack checker")}
+{poster("auto","Shows off: a shop price board and booking by day")}
+{poster("electrical","Shows off: an EV charger cost estimator and a 24/7 emergency line")}
+{poster("plumbing","Shows off: a “what’s going on?” helper and a service area map")}
+{poster("hvac","Shows off: a heating and cooling switch, and comfort plans")}
+{poster("landscaping","Shows off: before/after slider and big galleries")}
 </div></div></section>
 <section class="section"><div class="wrap">
 <div class="section-head reveal"><span class="eyebrow">Before and after</span><h2>Drag the slider.</h2><p class="lede">An outdated trade website on the left, a Foundry Systems redesign on the right.</p></div>
@@ -364,7 +388,7 @@ work = head("Sample work", "Real sites. Working samples.", "Real client work com
 <input type="range" min="0" max="100" value="50" aria-label="Compare old and new website"><span class="handle"></span></div>
 </div></section>'''
 page("work.html", "Sample Work | Foundry Systems", "Real client websites and working sample sites for glass shops, auto repair, electricians, plumbers, HVAC and landscapers.", work, "work.html",
-     bot_hello="These are real working demos. Click around!")
+     bot_hello="These are real working demos. Click around!", extra_head=SAMPLE_FONTS)
 
 # ------------------------------- SAMPLE ------------------------------------
 sample = '<section class="section-tight"><div class="wrap"><span class="eyebrow">Sample concept</span><h1 style="font-size:clamp(2rem,5vw,3.4rem)">Sample site</h1><div id="sample-root"></div></div></section>'
