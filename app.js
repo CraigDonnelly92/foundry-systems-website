@@ -10,7 +10,7 @@ var CONFIG = {
   stripe: { core: "", complete: "" },
   // Paste your Google Calendar booking page link here
   // (Google Calendar > Create > Appointment schedule > Share > copy the booking page link)
-  booking: ""
+  booking: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0EmmQFHutRVuAaT54mZsf9KXp-ehNK5BuI0osohAjr-IWFxPSsIE_wVv3hVmjrvQ_QyEB-68rS"
 };
 window.FS_CONFIG = CONFIG;
 
