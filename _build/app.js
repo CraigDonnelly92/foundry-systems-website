@@ -8,8 +8,9 @@ var CONFIG = {
   promoEnd: new Date(2027, 0, 1, 0, 0, 0),   // promo switches off Jan 1, 2027 (visitor's local time)
   // Paste Stripe payment links here when ready; leave blank to hide the pay buttons.
   stripe: { core: "", complete: "" },
-  // Paste your Calendly event link here (e.g. "https://calendly.com/foundrysystems/kickoff-call")
-  calendly: ""
+  // Paste your Google Calendar booking page link here
+  // (Google Calendar > Create > Appointment schedule > Share > copy the booking page link)
+  booking: ""
 };
 window.FS_CONFIG = CONFIG;
 
@@ -288,22 +289,14 @@ if(wz){
 
   $$(".confirm input", wz).forEach(function(i){ i.addEventListener("change", function(){ i.closest(".confirm").classList.toggle("missing", !i.checked); }); });
 
-  // Kickoff call booking (Calendly)
-  var calLoaded = false, calBox = $("#calendly-box"), calField = $("#kickoff-field");
+  // Kickoff call booking (Google Calendar appointment schedule)
+  var calLoaded = false, calBox = $("#calendly-box");
   function loadCalendly(){
     if(calLoaded || !calBox) return; calLoaded = true;
-    var url = CONFIG.calendly;
-    if(!url){ calBox.innerHTML = '<p class="cal-wait"><b>Booking calendar coming soon.</b> Send the form and I\'ll reach out within one business day to set up a time that works.</p>'; return; }
-    var nm = wz.querySelector('[name="Name"]'), em = wz.querySelector('[name="Email"]');
-    var q = "hide_gdpr_banner=1&background_color=26262b&text_color=f4f1ec&primary_color=ff6b1a" +
-      (nm && nm.value ? "&name=" + encodeURIComponent(nm.value) : "") + (em && em.value ? "&email=" + encodeURIComponent(em.value) : "");
-    calBox.innerHTML = '<iframe title="Book your kickoff call" src="' + url + (url.indexOf("?")>-1?"&":"?") + q + '&embed_type=Inline&embed_domain=' + location.hostname + '" loading="lazy"></iframe>';
-    window.addEventListener("message", function(e){
-      if(e.origin.indexOf("calendly.com") === -1 || !e.data || e.data.event !== "calendly.event_scheduled") return;
-      var uri = (e.data.payload && e.data.payload.event && e.data.payload.event.uri) || "";
-      calField.value = "Booked through Calendly " + uri;
-      calBox.insertAdjacentHTML("beforebegin", '<p class="cal-done">Your kickoff call is booked. You\'ll get a confirmation email from Calendly.</p>');
-    });
+    var url = CONFIG.booking;
+    if(!url){ calBox.innerHTML = '<p class="cal-wait"><b>Booking calendar coming soon.</b> Send the form and I\'ll call you within one business day to set up a time that works.</p>'; return; }
+    calBox.classList.add("gcal");
+    calBox.innerHTML = '<iframe title="Book your kickoff phone call" src="' + url + (url.indexOf("?")>-1?"&":"?") + 'gv=true" loading="lazy"></iframe>';
   }
 
   // trade-specific questions

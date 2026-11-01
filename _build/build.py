@@ -429,7 +429,7 @@ for k, t in TRADES.items():
 hiw_steps = [
  ("Fill out the project form","About 15 to 20 minutes","The form asks one topic at a time: your business, services, hours, photos, the look you want. Anything you're not sure about, skip it and we'll talk it through. Your answers save as you go."),
  ("Pay the build invoice","Same day","After you send the form, you'll get your build invoice. The build is paid in full up front, and that's when the 2-week clock starts."),
- ("Quick kickoff call","Within 1 to 2 business days","A short call to go over your answers, fill any gaps and make sure we're on the same page."),
+ ("Quick kickoff call","Within 1 to 2 business days","A 30-minute phone call, booked right from the project form, to go over your answers, fill any gaps and make sure we're on the same page."),
  ("I build your site","About 1 week","I design and build your pages, write or polish the text, and set up your forms, maps and Google info."),
  ("You review a preview","A few days","You get a private preview link. Look it over on your phone, send your changes, and I'll make them."),
  ("Launch day","Around the 2-week mark","Once you approve, your site goes live on your domain with a secure connection. Your phone starts ringing."),
@@ -618,9 +618,9 @@ steps.append(("Extras and wrap-up", f'''
 {fld("Competitors","Competitors","area",hint="Links to 1 to 3 local competitors.")}
 {fld("Anything else?","Anything else","area")}
 {fld("How did you hear about Foundry Systems?","Heard about us")}
-<div class="field book-call"><span class="flabel">Book your kickoff call</span><span class="hint">Pick a time that works for you. It's a short call to go over your answers.</span>
-<div id="calendly-box" class="calendly-box"><p class="muted">Loading the calendar…</p></div>
-<input type="hidden" name="Kickoff call" id="kickoff-field" value="Not booked yet"></div>
+<div class="field book-call"><span class="flabel">Book your kickoff phone call</span><span class="hint">Pick an open 30-minute slot. I'll call you at the number you gave in step 1 to go over your answers.</span>
+<div id="calendly-box" class="calendly-box"><p class="muted">Loading the calendar…</p></div></div>
+<fieldset class="field"><legend>Did you book a call time?</legend>{radios("Kickoff call", ["Yes, I booked a time","No, please call me to set one up"])}</fieldset>
 <label class="confirm"><input type="checkbox" name="Confirmation" value="Info is accurate and I have rights to the photos and logo I uploaded" required><span class="box" aria-hidden="true"></span><span class="txt"><b class="need">Required: tap the box to confirm</b>My info is accurate, and I have the rights to the photos and logo I uploaded.</span></label>'''))
 
 wsteps = "".join(f'<fieldset class="wstep" data-title="{e(t)}"><legend class="sr" style="position:absolute;left:-9999px">{e(t)}</legend><h2 style="font-size:clamp(1.7rem,4vw,2.4rem)">{e(t)}</h2>{b}</fieldset>' for t, b in steps)

@@ -117,3 +117,6 @@ input[type=file]::file-selector-button{background:var(--orange);color:var(--ink)
 @media (max-width:620px){.calendly-box iframe{height:900px}}
 .cal-wait{padding:20px;margin:0;color:#d9d6d0}
 .cal-done{background:rgba(127,224,160,.12);border:2px solid #7fe0a0;color:#c9f3d7;border-radius:12px;padding:14px 16px;font-weight:600;margin:0 0 12px}
+.calendly-box.gcal{background:#fff;border-color:#fff}
+.calendly-box.gcal iframe{height:640px}
+@media (max-width:620px){.calendly-box.gcal iframe{height:820px}}
