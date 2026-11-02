@@ -8,7 +8,7 @@ os.makedirs(OUT, exist_ok=True)
 
 SITE = "https://foundrysystems.ca"
 PHONE = "780-834-8078"; TEL = "+17808348078"; EMAIL = "craig.foundrysystems@gmail.com"
-WEB3FORMS_KEY = ""   # paste the Web3Forms access key here to switch all forms to Web3Forms
+WEB3FORMS_KEY = "4f42f59f-0e47-4d23-a2de-121804250022"   # paste the Web3Forms access key here to switch all forms to Web3Forms
 FORM_ACTION = "https://api.web3forms.com/submit" if WEB3FORMS_KEY else "https://formsubmit.co/" + EMAIL
 ROBOT = open(os.path.join(SRC, "robot.svg"), encoding="utf-8").read()
 e = html.escape
@@ -582,11 +582,11 @@ steps.append(("Pages", '''
 <p id="page-limit" class="saved-note" aria-live="polite"></p>
 ''' + fld("Any custom page you want?","Custom page")))
 steps.append(("Look and feel", f'''
-<div class="field"><label for="f-logo">Logo upload<span class="hint">SVG or a large PNG is best.</span></label><input id="f-logo" type="file" name="attachment" accept="image/*,.svg,.pdf,.ai,.eps"></div>
+<div class="field"><span class="flabel">Your logo</span><div class="sendlater"><span class="hint">An SVG or a large PNG is best.</span>Email it to <a href="mailto:{EMAIL}?subject=Logo%20for%20my%20website">{EMAIL}</a> or text it to <a href="sms:{TEL}">{PHONE}</a>.</div></div>
 <fieldset class="field"><legend>No logo?</legend>{checks("Logo", ["I need a logo (add-on)"])}</fieldset>
 <fieldset class="field"><legend>Brand colours</legend>{radios("Colours", ["Match my logo","You choose","I'll pick them"])}</fieldset>
 <div class="row2"><div class="field"><label for="f-c1">Main colour</label><input id="f-c1" type="color" name="Main colour" value="#0c2d48" style="height:52px;width:100%;padding:4px"></div><div class="field"><label for="f-c2">Accent colour</label><input id="f-c2" type="color" name="Accent colour" value="#ff6b1a" style="height:52px;width:100%;padding:4px"></div></div>
-<div class="field"><label for="f-wrap">Photos of truck wraps, signs or uniforms<span class="hint">So the site matches what customers already see.</span></label><input id="f-wrap" type="file" name="attachment" accept="image/*" multiple></div>
+<div class="field"><span class="flabel">Photos of truck wraps, signs or uniforms</span><div class="sendlater"><span class="hint">So the site matches what customers already see.</span>Email them to <a href="mailto:{EMAIL}?subject=Photos%20for%20my%20website">{EMAIL}</a> or text them to <a href="sms:{TEL}">{PHONE}</a>.</div></div>
 {fld("Websites you like, and what you like about them","Sites liked","area",hint="Up to three links.")}
 {fld("Websites you don't like","Sites disliked")}
 <fieldset class="field"><legend>The feel you want</legend>{radios("Feel", ["Friendly and family-owned","No-nonsense and professional","Bold and modern"])}</fieldset>
@@ -594,7 +594,7 @@ steps.append(("Look and feel", f'''
 steps.append(("Content and photos", f'''
 {fld("Your story","Story","area",hint="How you got started, family-owned?, what makes you different.")}
 {fld("Team members","Team","area",ph="Name, role… (photos optional)")}
-<div class="field"><label for="f-photos">Photo uploads<span class="hint">Finished jobs, before/after, team, trucks, shop. You can also email or text photos later.</span></label><input id="f-photos" type="file" name="attachment" accept="image/*" multiple></div>
+<div class="field"><span class="flabel">Photos of your work</span><div class="sendlater"><span class="hint">Finished jobs, before and after, team, trucks, shop. Phone photos are fine.</span>Email them to <a href="mailto:{EMAIL}?subject=Photos%20for%20my%20website">{EMAIL}</a> or text them to <a href="sms:{TEL}">{PHONE}</a>. Send them anytime, even after this form.</div></div>
 <fieldset class="field"><legend>Need stock photos to fill gaps?</legend>{radios("Stock photos", ["Yes","No"])}</fieldset>
 {fld("Reviews and testimonials","Reviews","area",hint="Paste a few, or link your Google reviews.")}
 {fld("Awards and memberships","Memberships",ph="BBB, chamber of commerce, trade associations…")}
@@ -621,20 +621,20 @@ steps.append(("Extras and wrap-up", f'''
 <div class="field book-call"><span class="flabel">Book your kickoff phone call</span><span class="hint">Pick an open 30-minute slot. I'll call you at the number you gave in step 1 to go over your answers.</span>
 <div id="calendly-box" class="calendly-box"><p class="muted">Loading the calendar…</p></div></div>
 <fieldset class="field"><legend>Did you book a call time?</legend>{radios("Kickoff call", ["Yes, I booked a time","No, please call me to set one up"])}</fieldset>
-<label class="confirm"><input type="checkbox" name="Confirmation" value="Info is accurate and I have rights to the photos and logo I uploaded" required><span class="box" aria-hidden="true"></span><span class="txt"><b class="need">Required: tap the box to confirm</b>My info is accurate, and I have the rights to the photos and logo I uploaded.</span></label>'''))
+<label class="confirm"><input type="checkbox" name="Confirmation" value="Info is accurate and I have rights to the photos and logo I send" required><span class="box" aria-hidden="true"></span><span class="txt"><b class="need">Required: tap the box to confirm</b>My info is accurate, and I have the rights to the photos and logo I send.</span></label>'''))
 
 wsteps = "".join(f'<fieldset class="wstep" data-title="{e(t)}"><legend class="sr" style="position:absolute;left:-9999px">{e(t)}</legend><h2 style="font-size:clamp(1.7rem,4vw,2.4rem)">{e(t)}</h2>{b}</fieldset>' for t, b in steps)
 start = head("Start your project", "Let's build your site.", "Ten short steps, about 15 to 20 minutes. Your answers save on this device as you go, so you can come back to finish.") + f'''
 <section class="section-tight"><div class="wrap" style="max-width:860px">
 <div class="wizard-top"><div class="step-meta"><b id="step-label">You and your business</b><span id="step-count">Step 1 of 10</span></div>
 <div class="progress" aria-hidden="true"><div class="progress-fill"></div><div class="progress-bot">{ROBOT.replace('class="bot"','class="bot" style="width:100%;height:100%"')}</div></div></div>
-<form class="form form-card" id="intake" action="{FORM_ACTION}" method="POST" enctype="multipart/form-data">
+<form class="form form-card" id="intake" action="{FORM_ACTION}" method="POST">
 {hidden("New project form from the Foundry Systems website", "thanks.html?form=project")}
 {wsteps}
 <div class="wizard-nav"><button type="button" class="btn btn-ghost" id="w-prev">Back</button>
 <button type="button" class="btn btn-primary" id="w-next">Next step</button><button type="submit" class="btn btn-primary" id="w-send" hidden>Send my project form</button></div>
 <p class="saved-note" id="saved-note" aria-live="polite"></p>
-<p class="muted" style="font-size:.85rem;margin:14px 0 0">Uploaded files aren't saved between visits; add them right before you send. <button type="button" id="clear-saved" style="background:none;border:0;color:var(--ember);cursor:pointer;text-decoration:underline;font:inherit">Clear my answers</button></p>
+<p class="muted" style="font-size:.85rem;margin:14px 0 0">Your answers save on this device as you go. <button type="button" id="clear-saved" style="background:none;border:0;color:var(--ember);cursor:pointer;text-decoration:underline;font:inherit">Clear my answers</button></p>
 </form></div></section>'''
 page("start.html", "Start Your Project | Foundry Systems", "The guided project form: everything needed to build your website, in about 15 minutes.", start, None, cta=False,
      bot_hello="I'll ride along the progress bar. Let's go!", body_attr=' data-page="start"')
